@@ -1,10 +1,299 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Mon Portail</title>
-</head>
-<body>
-    <h1>Bienvenue sur mon site racine !</h1>
-    <p>Mes projets : <a href="/games">Accéder aux jeux</a>. si cet url est https://lepripri.github.io/lepripri.github.io, c'est pas bon</p>
-</body>
-</html>
+<html style="background-color: rgb(252, 177, 227);"><head>
+    <script>if (localStorage.recommandations !== undefined) {
+    var recommandations = JSON.parse(localStorage.recommandations);
+}else{
+    var recommandations = {
+        code: {
+            isExtInstaled: false,
+            other: []
+        },
+        converter: {
+            isAppInstaled: false,
+            isExtInstaled: false,
+            format: ".mp3",
+            other: [],
+            YouTube: []
+        },
+        extension: {
+            isExtInstaled: false,
+            other: []
+        },
+        games: {
+            isExtInstaled: false,
+            logicGames: [],
+            actionGames: [],
+            other: []
+        },
+        product: {
+            apps: [],
+            popular: [],
+            other: []
+        },
+        settings: {
+            other: []
+        }
+    }
+}
+onbeforeunload = () => {
+    localStorage.setItem("recommandations", JSON.stringify(recommandations));
+}
+function rederect (url) {
+    var redirectionLink = document.body.appendChild(document.createElement('a'));
+    redirectionLink.href = url;
+    redirectionLink.click();
+    redirectionLink.remove();
+}</script>
+    <link rel="manifest" href="https://lepripri.github.io/azertyuiop/manifest.json">
+    <link type="image/png" sizes="16x16" rel="icon" href="https://lepripri.github.io/instal/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; application/xml; charset=utf-8">
+    <title>le pripri (official Camille's version)</title>
+    <meta name="description" content="le pripri est un site remplis d'outils">
+    <style>html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block}</style>
+  </head>
+  <body>
+    <text class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">le pripri</text><text style="font-family: sans-serif;font-size: 15px;">le pripri est 95%* gratuit et 100% prenium. en navigant dans les 5 categories de le pripri vous pouvais donc faire plein de choses, en plus c'est gratuit !</text>
+    
+    
+    <text style="font-family: sans-serif;font-size: 8px;display: block;">*quelque fonctionnalitées [payantes] du au droits d'auteurs sur certain contenu</text>
+    <hr><div style="display: flex;justify-content: space-between;"><text class="homeTitle">recommandations</text><button minus="">effacer</button></div><div class="homeAction"><div class="homeActionItem" id="none" title="naviguez afin de pouvoir afficher les recomandations !"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 27px;">commencer</div></div></div><hr>
+    
+    <text class="homeTitle">reccomendations le pripri</text><div class="homeAction"><div class="homeActionItem" id="downladExtension" title="afin de bon fonctionnement et de plus de fonctionnalitées instalez l'extension le pripri"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 24.5px;" title="instaler l'extension le pripri">instaler l'ext.</div></div><div class="homeActionItem" id="draw"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/le%20pripri%20draw%20-%20128.png" draggable="false"></div><div class="homeActionItemText">dessiner</div></div></div><text class="homeTitle">toutes les catégories</text><div class="homeAction"><div class="homeActionItem" id="converter"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px_1.png"></div><div class="homeActionItemText" title="convertiseur pour baladeur mp4">converti.</div></div><div class="homeActionItem" id="product"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Product.png" draggable="false"></div><div class="homeActionItemText">produits</div></div><div class="homeActionItem" id="code"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Source%20Code_1.png" draggable="false"></div><div class="homeActionItemText">code</div></div><div class="homeActionItem" id="setings"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false"></div><div class="homeActionItemText">paramètres</div></div><div class="homeActionItem" id="extension"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/icons8_puzzle_100px_2.png" draggable="false"></div><div class="homeActionItemText">extensions</div></div><div id="games" class="homeActionItem"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png"></div><div class="homeActionItemText">jeux</div></div><div class="homeActionItem" id="draw"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/le%20pripri%20draw%20-%20128.png" draggable="false"></div><div class="homeActionItemText">draw</div></div></div><script>var click = "click", _self = "_self", eventListenerCode = () => {rederect("https://lepripri.github.io/code", _self)}; code.addEventListener(click, eventListenerCode);extension.addEventListener("click", () => {rederect("https://lepripri.github.io/instal/extension/")});setings.addEventListener("click", () => {rederect("https://lepripri.github.io/lepripri/setting")})</script>
+  
+  <script src="https://lepripri.github.io/instal/allDocument.js"></script><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden=""><script>converter.addEventListener('mouseenter', () => {
+    document.querySelector('#converter img').src = 'https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px.png';
+});
+converter.addEventListener('mouseleave', () => {
+    document.querySelector('#converter img').src = 'https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px_1.png';
+});product.addEventListener('mouseenter', () => {
+    document.querySelector('#product img').src = 'https://lepripri.github.io/lepripri/icons/Product_1.png';
+});
+product.addEventListener('mouseleave', () => {
+    document.querySelector('#product img').src = 'https://lepripri.github.io/lepripri/icons/Product.png';
+});
+  code.addEventListener('mouseenter', () => {
+    document.querySelector('#code img').src = 'https://lepripri.github.io/lepripri/icons/Source%20Code.png';
+});
+code.addEventListener('mouseleave', () => {
+    document.querySelector('#code img').src = 'https://lepripri.github.io/lepripri/icons/Source%20Code_1.png';
+});
+setings.addEventListener('mouseenter', () => {
+    document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings_1.png';
+});
+setings.addEventListener('mouseleave', () => {
+    document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings.png';
+});
+extension.addEventListener('mouseenter', () => {
+    document.querySelector('#extension img').src = 'https://lepripri.github.io/lepripri/icons/icons8_puzzle_100px_1.png';
+});
+extension.addEventListener('mouseleave', () => {
+    document.querySelector('#extension img').src = 'https://lepripri.github.io/lepripri/icons/icons8_puzzle_100px_2.png';
+});
+try {
+    downladExtension.addEventListener('mouseenter', () => {
+        downladExtension.querySelector('img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+    })
+    downladExtension.addEventListener('mouseleave', () => {
+        downladExtension.querySelector('img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+    })
+} catch (e) {
+    
+}
+none.addEventListener('mouseenter', () => {
+    none.querySelector('img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+});
+none.addEventListener('mouseleave', () => {
+    none.querySelector('img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+});
+none.onclick = () => {
+    converter.parentElement.style.backgroundColor = 'rgb(255 144 218)';
+    setTimeout(() => {
+        converter.parentElement.style.backgroundColor = ''
+    }, 500);
+}
+downladExtension.addEventListener("click", () => {var closer = () => {dialog.close();dialog.remove();}, dialog = document.createElement("dialog");dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">le contenu est indisponible';dialog.className = "message";document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener("click", closer);dialog.addEventListener("keydown", closer);document.addEventListener("keydown", closer);setTimeout(closer, 3000)})
+var battery, messageNoPouwer = () => {
+    alert('batt faible')
+};
+games.onclick = () => {
+    rederect('https://lepripri.github.io/games/');
+}
+games.onmouseenter = () => {games.querySelector('img').src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_2.png'};
+games.onmouseleave = () => {games.querySelector('img').src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png'};
+document.querySelectorAll("#draw").forEach((elementDraw) => {
+    elementDraw.onclick = () => {
+        rederect("https://lepripri.github.io/draw/")
+    }
+});
+</script><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden="">
+
+
+
+
+
+<style>
+      text.homeTitle {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+      hr {
+        border: solid;
+        border-width: 1px;
+      }
+      a.code[href="https://lepripri.github.io/code/"]::before {
+        content: "";
+        background-image: url("https://lepripri.github.io/lepripri/icons/Source%20Code.png");
+        background-repeat: no-repeat;
+      }
+      button, a{
+        background-color: #fcb1e3;
+        border-color: #FF0000;
+        border-style: solid;
+        border-width: 3px;
+        padding-inline: 7px;
+        padding-block: 5px;
+        font-family: arial;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none !important;
+        text-decoration: none;
+        color: #000000;
+      }
+      button:hover, button:focus, a:hover, a:focus{
+        font-size: 22px;
+        translate: -8px 0px;
+        margin-inline-end: -30px
+      }
+      button[not-button] {
+        border-style: none;
+        background: none;
+        font-family: revert;
+        cursor: revert;
+        font-size: revert;
+        translate: revert;
+      }
+      html, body {
+        background-color: #fcb1e3;
+        width: 100%;
+        width: -webkit-fill-available;
+        height: 100%;
+        height: -webkit-fill-available;
+        display: flex;
+        flex-direction: column;
+      }
+      .homeAction {
+        cursor: default;
+        display: -ms-grid;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 100%;
+        width: -webkit-fill-available;
+        height: 100%;
+        overflow: auto;
+      }
+      .homeActionItem {
+        width: 150px;
+        height: 165px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+      .title {
+        height: 55.88px;
+        width: 100%;
+        width: -webkit-fill-available;
+          display: inline-block;
+      }
+      .homeActionItemText {
+        font-size: 29px;
+        font-family: sans-serif;
+        font-weight: 600;
+      }
+      .homeActionItem:hover {
+        color: #f00;
+      }
+      .homeActionItemImage img {
+          width: 100px;
+          height:100px;
+      }
+      @media (max-width: 1920px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 1760px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 1600px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 1440px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 1280px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 1120px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 960px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 800px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 640px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr 1fr;
+          }
+      }
+      @media (max-width: 480px) {
+          .homeAction {
+              grid-template-columns: 1fr 1fr;
+          }
+      }
+      @media (max-width: 320px) {
+          .homeAction {
+              grid-template-columns: 1fr;
+          }
+      }
+      @media (max-width: 160px) {
+          .homeActionItem {
+            width: 100%;
+            width: -webkit-fill-available;
+          }
+      }
+      button[minus] {
+        position: absolute;
+        font-size: 12px;
+        padding: 2px;
+        margin: 0px;
+        translate: 160px 0px;
+      }
+      button[minus]:hover, button[minus]:focus{
+        font-size: 15px;
+        translate: 162px;
+      }
+</style>
+
+
+
+
+</body></html>
