@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portail - Connexion</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f4f4f9; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        button { background-color: #4285F4; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background-color: #357ae8; }
+        #user-info { margin-top: 20px; display: none; }
+        img { border-radius: 50%; width: 50px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Bienvenue sur Lepripri</h1>
+        
+        <button id="login-btn">Se connecter avec Google</button>
+
+        <div id="user-info">
+            <p id="welcome-msg"></p>
+            <img id="user-pic" src="" alt="Photo de profil">
+            <br>
+            <button id="logout-btn" style="background-color: #d32f2f;">Se déconnecter</button>
+            <p><a href="/games">Accéder aux jeux</a></p>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importation des bibliothèques Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // COPIE TA CONFIG ICI
+        const firebaseConfig = {
+            apiKey: "XXXX",
+            authDomain: "XXXX.firebaseapp.com",
+            projectId: "XXXX",
+            storageBucket: "XXXX.appspot.com",
+            messagingSenderId: "XXXX",
+            appId: "XXXX"
+        };
+
+        // Initialisation de Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        const loginBtn = document.getElementById('login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const userInfo = document.getElementById('user-info');
+        const welcomeMsg = document.getElementById('welcome-msg');
+        const userPic = document.getElementById('user-pic');
+
+        // Gérer la connexion
+        loginBtn.onclick = () => {
+            signInWithPopup(auth, provider).catch(error => alert("Erreur : " + error.message));
+        };
+
+        // Gérer la déconnexion
+        logoutBtn.onclick = () => {
+            signOut(auth);
+        };
+
+        // Surveiller si l'utilisateur est connecté ou non
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Utilisateur connecté
+                loginBtn.style.display = 'none';
+                userInfo.style.display = 'block';
+                welcomeMsg.innerText = "Bonjour " + user.displayName;
+                userPic.src = user.photoURL;
+            } else {
+                // Utilisateur déconnecté
+                loginBtn.style.display = 'block';
+                userInfo.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
