@@ -64,19 +64,6 @@ function registerEmail(email, password) {
 // ===============================
 // AUTH STATE
 // ===============================
-onAuthStateChanged(auth, user => {
-  if (user) {
-    console.log("✅ Connecté :", user.uid);
-    document.body.setAttribute("logged", "");
-  } else {
-    console.log("❌ Déconnecté");
-    document.body.removeAttribute("logged");
-  }
-});
-
-// ===============================
-// EXPOSE GLOBAL (IMPORTANT)
-// ===============================
 window.Pripri = {
   app,
   analytics,
@@ -87,11 +74,25 @@ window.Pripri = {
     registerEmail,
     loginEmail,
     loginGithub,
-    loginGoogle,
-    auth
+    loginGoogle
   },
+  auth,
   isConnected: false
 };
+onAuthStateChanged(auth, user => {
+  if (user) {
+    console.log("✅ Connecté :", user.uid);
+    document.body.setAttribute("logged", "");
+    Pripri.currentUser.isConnected = true;
+  } else {
+    console.log("❌ Déconnecté");
+    document.body.removeAttribute("logged");
+  }
+});
+
+// ===============================
+// EXPOSE GLOBAL (IMPORTANT)
+// ===============================
 if (!Pripri.auth.currentUser === null) {
     Pripri.currentUser.isConnected = true;
 }
