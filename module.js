@@ -61,10 +61,6 @@ function registerEmail(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
-function logout() {
-  signOut(auth);
-}
-
 // ===============================
 // AUTH STATE
 // ===============================
