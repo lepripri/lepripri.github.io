@@ -4,6 +4,8 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-storage.js";
+import { getAuth, signOut } from
+"https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
@@ -21,7 +23,15 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-
+function logout() {
+  signOut(auth)
+    .then(() => {
+      console.log("Déconnecté ✔");
+    })
+    .catch((error) => {
+      console.error("Erreur de déconnexion", error);
+    });
+}
 // 🔥 exposé globalement
 window.Pripri = {
   app,
