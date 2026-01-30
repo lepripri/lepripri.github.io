@@ -94,6 +94,6 @@ onAuthStateChanged(auth, user => {
 // EXPOSE GLOBAL (IMPORTANT)
 // ===============================
 if (!Pripri.auth.currentUser === null) {
-    Pripri.currentUser.isConnected = true;
+    Pripri.isConnected = true;
 }
 console.log("🔥 Firebase ready");
