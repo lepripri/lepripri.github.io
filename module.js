@@ -83,7 +83,7 @@ window.Pripri = {
   db,
   storage,
   logout,
-  login{
+  login: {
     registerEmail,
     loginEmail,
     loginGithub,
