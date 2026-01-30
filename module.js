@@ -35,10 +35,10 @@ function logout() {
 window.Pripri = {
   app,
   analytics,
-  auth,
   db,
   storage,
-  user: null
+  logout,
+  user: null,
 };
 
 console.log("🔥 Firebase prêt");
