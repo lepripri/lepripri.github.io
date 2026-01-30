@@ -40,17 +40,6 @@ function logout() {
     });
 }
 
-// CONFIG
-const firebaseConfig = {
-  apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
-  authDomain: "le-pripri.firebaseapp.com",
-  projectId: "le-pripri",
-  storageBucket: "le-pripri.firebasestorage.app",
-  messagingSenderId: "80244197022",
-  appId: "1:80244197022:web:420e34b41cbcf68f02dd8f",
-  measurementId: "G-BFCPKQKX2Y"
-};
-
 // PROVIDERS
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
