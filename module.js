@@ -3,8 +3,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-storage.js";
-import { getAuth, signOut } from
-"https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
@@ -31,14 +39,70 @@ function logout() {
       console.error("Erreur de déconnexion", error);
     });
 }
-// 🔥 exposé globalement
+
+// CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
+  authDomain: "le-pripri.firebaseapp.com",
+  projectId: "le-pripri",
+  storageBucket: "le-pripri.firebasestorage.app",
+  messagingSenderId: "80244197022",
+  appId: "1:80244197022:web:420e34b41cbcf68f02dd8f",
+  measurementId: "G-BFCPKQKX2Y"
+};
+
+// PROVIDERS
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
+
+// LOGIN FUNCTIONS
+function loginGoogle() {
+  signInWithPopup(auth, googleProvider);
+}
+
+function loginGithub() {
+  signInWithPopup(auth, githubProvider);
+}
+
+function loginEmail(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+function registerEmail(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
+}
+
+function logout() {
+  signOut(auth);
+}
+
+// ===============================
+// AUTH STATE
+// ===============================
+onAuthStateChanged(auth, user => {
+  if (user) {
+    console.log("✅ Connecté :", user.uid);
+    document.body.setAttribute("logged", "");
+  } else {
+    console.log("❌ Déconnecté");
+    document.body.removeAttribute("logged");
+  }
+});
+
+// ===============================
+// EXPOSE GLOBAL (IMPORTANT)
+// ===============================
 window.Pripri = {
   app,
   analytics,
   db,
   storage,
   logout,
+  registerEmail,
+  loginEmail,
+  loginGithub,
+  loginGoogle,
   user: null,
 };
 
-console.log("🔥 Firebase prêt");
+console.log("🔥 Firebase ready");
