@@ -87,7 +87,7 @@ window.Pripri = {
   loginEmail,
   loginGithub,
   loginGoogle,
-  user: null,
+  auth
 };
 
 console.log("🔥 Firebase ready");
