@@ -89,5 +89,26 @@ window.Pripri = {
   loginGoogle,
   auth
 };
-
+if (Pripri.auth.currentUser === null) {
+    Pripri.currentUser = {
+        "uid": "",
+        "email": "",
+        "emailVerified": false,
+        "displayName": "non connecté",
+        "isAnonymous": true,
+        "photoURL": "https://lepripri.github.io/azertyuiop/icons/page-512.png",
+        "providerData": [],
+        "stsTokenManager": {
+            "refreshToken": "",
+            "accessToken": "",
+            "expirationTime": 0
+        },
+        "createdAt": "0",
+        "lastLoginAt": "0",
+        "apiKey": "",
+        "appName": ""
+    }
+}else{
+    Pripri.currentUser = Pripri.auth.currentUser;
+}
 console.log("🔥 Firebase ready");
