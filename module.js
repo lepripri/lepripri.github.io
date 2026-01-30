@@ -83,7 +83,7 @@ onAuthStateChanged(auth, user => {
   if (user) {
     console.log("✅ Connecté :", user.uid);
     document.body.setAttribute("logged", "");
-    Pripri.currentUser.isConnected = true;
+    Pripri.isConnected = true;
   } else {
     console.log("❌ Déconnecté");
     document.body.removeAttribute("logged");
