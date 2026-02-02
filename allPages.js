@@ -39,7 +39,41 @@ lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-h
         cursor: revert;
         font-size: revert;
         translate: revert;
-      }`;
+      }
+markdown {
+    content {
+        display: none;
+    }
+    display {
+        code[notpre] {
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f9f9f9;
+            font-size: 0px;
+            margin-block: 5px;
+            div {
+                display: flex;
+                justify-content: space-between;
+                font-size: 20px;
+                border-block-end-style: solid;
+                border-width: 1px;
+                padding: 6px
+            }
+            code {
+                padding-inline: 6px;
+                margin-block: 6px;
+                display: block;
+                font-family: monospace;
+                font-size: initial;
+            }
+        }
+    }
+}`;
 document.head.appendChild(lppStyle)
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.Pripri) {
@@ -67,7 +101,24 @@ header.selectNode.value = header.selectText;
 header.node.appendChild(header.selectNode);
 document.body.insertBefore(header.node, header.emplacement);
 document.querySelectorAll('script').forEach(s => s.remove());
-document.querySelectorAll("markdown").forEach((markdownElement) => {
+
+window.pripriCopy = function(index) {
+    const textToCopy = bigCodeShelter[index].raw;
+
+    // Tentative avec l'API moderne
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showSuccess(index);
+        }).catch(err => {
+            console.error("Erreur clipboard API", err);
+            fallbackCopy(textToCopy, index);
+        });
+    } else {
+        // Si l'API moderne n'existe pas, on utilise la vieille méthode
+        fallbackCopy(textToCopy, index);
+    }
+};
+setInterval(() => document.querySelectorAll("markdown").forEach((markdownElement) => {
 var rawContent = markdownElement.querySelector("content").textContent;
 // 1. EXTRACTION (On ajoute juste une petite sécurité sur le contenu)
 let bigCodeShelter = [];
@@ -115,24 +166,6 @@ bigCodeShelter.forEach((item, i) => {
     html = html.replace(`%%BIG_CODE_${i}%%`, block);
 });
 
-// 5. LA FONCTION DE COPIE (À mettre à la fin de ton script)
-window.pripriCopy = function(index) {
-    const textToCopy = bigCodeShelter[index].raw;
-
-    // Tentative avec l'API moderne
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            showSuccess(index);
-        }).catch(err => {
-            console.error("Erreur clipboard API", err);
-            fallbackCopy(textToCopy, index);
-        });
-    } else {
-        // Si l'API moderne n'existe pas, on utilise la vieille méthode
-        fallbackCopy(textToCopy, index);
-    }
-};
-
 // Vieille méthode qui marche même sans HTTPS
 function fallbackCopy(text, index) {
     const textArea = document.createElement("textarea");
@@ -163,4 +196,4 @@ if (!markdownElement.querySelector("display")) {
 }else{
     markdownElement.querySelector("display").innerHTML = html;
 }
-});
+}), 100);
