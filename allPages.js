@@ -40,7 +40,7 @@ lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-h
         font-size: revert;
         translate: revert;
       }`;
-doucument.head.appendChild(lppStyle)
+document.head.appendChild(lppStyle)
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.Pripri) {
     console.error("Uncaught Error: failled to load Firebase in allPages.js file");
