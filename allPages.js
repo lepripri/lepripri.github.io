@@ -23,3 +23,4 @@ header.selectNode.id = header.selectNodeID;
 header.selectNode.value = header.selectText;
 header.node.appendChild(header.selectNode);
 document.body.insertBefore(header.node, header.emplacement);
+document.querySelectorAll('script').forEach(s => s.remove());
