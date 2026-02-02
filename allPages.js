@@ -67,3 +67,100 @@ header.selectNode.value = header.selectText;
 header.node.appendChild(header.selectNode);
 document.body.insertBefore(header.node, header.emplacement);
 document.querySelectorAll('script').forEach(s => s.remove());
+document.querySelectorAll("markdown").forEach((markdownElement) => {
+var rawContent = markdownElement.querySelector("content").textContent;
+// 1. EXTRACTION (On ajoute juste une petite sécurité sur le contenu)
+let bigCodeShelter = [];
+let step1 = rawContent.replace(/```(\w+)?\n?([\s\S]+?)```/g, (match, lang, code) => {
+    let languageName = lang ? lang : "code";
+    let cleanCode = code.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    
+    // On garde aussi une version "brute" pour la copie (sans les &lt;)
+    bigCodeShelter.push({ lang: languageName, content: cleanCode, raw: code.trim() });
+    return `%%BIG_CODE_${bigCodeShelter.length - 1}%%`;
+});
+
+// 2. EXTRACTION DU CODE SIMPLE (`) - AVANT LE GRAS/ITALIQUE
+let smallCodeShelter = [];
+let step2 = step1.replace(/`([^`]+)`/g, (m, code) => {
+    // On neutralise le HTML à l'intérieur pour éviter que <u> ne s'active
+    let clean = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    smallCodeShelter.push(clean);
+    return `%%SMALL_CODE_${smallCodeShelter.length - 1}%%`;
+});
+
+// 3. TRANSFORMATIONS DU TEXTE (Maintenant, c'est sûr !)
+let html = step2
+    .replace(/^###### (.*$)/gim, '<h6>$1</h6>')
+    .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
+    .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    .replace(/\*\*\*(.*)\*\*\*/gim, '<b style="font-style: italic;">$1</b>')
+    .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
+    .replace(/\*(.*)\*/gim, '<i>$1</i>');
+
+// 4. RÉINJECTION AVEC LE BOUTON
+bigCodeShelter.forEach((item, i) => {
+    // On utilise un attribut data-index pour savoir quel code copier
+    const block = `
+    <pre>
+        <div class="code-header">
+            <span class="code-lang">${item.lang}</span>
+            <button class="copy" onclick="pripriCopy(${i})" title="copier"></button>
+        </div>
+        <code>${item.content}</code>
+    </pre>`;
+    html = html.replace(`%%BIG_CODE_${i}%%`, block);
+});
+
+// 5. LA FONCTION DE COPIE (À mettre à la fin de ton script)
+window.pripriCopy = function(index) {
+    const textToCopy = bigCodeShelter[index].raw;
+
+    // Tentative avec l'API moderne
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showSuccess(index);
+        }).catch(err => {
+            console.error("Erreur clipboard API", err);
+            fallbackCopy(textToCopy, index);
+        });
+    } else {
+        // Si l'API moderne n'existe pas, on utilise la vieille méthode
+        fallbackCopy(textToCopy, index);
+    }
+};
+
+// Vieille méthode qui marche même sans HTTPS
+function fallbackCopy(text, index) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        showSuccess(index);
+    } catch (err) {
+        showMessage("Impossible de copier automatiquement.");
+    }
+    document.body.removeChild(textArea);
+}
+
+// Fonction pour l'animation visuelle
+function showSuccess(index) {
+    const btn = document.querySelectorAll('.copy')[index];
+    btn.classList.add('copied'); // On ajoute une classe CSS plutôt que de changer le texte
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+}
+// 4b. RÉINJECTION DES PETITS CODES (Les tickets `...`)
+smallCodeShelter.forEach((code, i) => {
+    html = html.replace(`%%SMALL_CODE_${i}%%`, `<code notpre>${code}</code>`);
+});
+if (!markdownElement.querySelector("display")) {
+    markdownElement.appendChild(document.createElement('display')).innerHTML = html;
+}else{
+    markdownElement.querySelector("display").innerHTML = html;
+}
+});
