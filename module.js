@@ -1,7 +1,7 @@
 // Firebase core
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-storage.js";
 import {
   getAuth,
@@ -13,7 +13,7 @@ import {
   createUserWithEmailAndPassword,
   signOut
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-
+import {} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
   authDomain: "le-pripri.firebaseapp.com",
@@ -95,5 +95,18 @@ onAuthStateChanged(auth, user => {
 // ===============================
 if (!Pripri.auth.currentUser === null) {
     Pripri.isConnected = true;
+}
+async function saveKeyToCloud(apiKey) {
+  const user = Pripri.auth.currentUser;
+  if (!user) return alert("Connecte-toi d'abord !");
+
+  try {
+    await setDoc(doc(Pripri.db, "users", user.uid), {
+      aiKey: apiKey
+    }, { merge: true });
+    console.log("Clé sauvegardée sur ton compte Pripri ! ☁️");
+  } catch (e) {
+    console.error("Erreur de sauvegarde", e);
+  }
 }
 console.log("🔥 Firebase ready");
