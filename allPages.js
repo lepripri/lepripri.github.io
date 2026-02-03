@@ -178,6 +178,8 @@ setInterval(() => {
 
         // 3. Transformations
         let html = step2
+            .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
             .replace(/^###### (.*$)/gim, '<h6>$1</h6>')
             .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
             .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
@@ -186,7 +188,9 @@ setInterval(() => {
             .replace(/^# (.*$)/gim, '<h1>$1</h1>')
             .replace(/\*\*\*(.*)\*\*\*/gim, '<b style="font-style: italic;">$1</b>')
             .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
-            .replace(/\*(.*)\*/gim, '<i>$1</i>');
+            .replace(/\*(.*)\*/gim, '<i>$1</i>')
+            .replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>')
+            .replace(/<\/ul>\s*<ul>/g, '');
 
         // 4. Réinjection
         // Gros blocs avec l'index global correct
