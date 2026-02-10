@@ -74,6 +74,10 @@ markdown {
             }
         }
     }
+}
+::selection {
+    background: linear-gradient(#000000, #ff0000, #00ff00, #0000ff, #ffff00, #ff00ff, #00ffff, #ffffff), #ffff00;
+    color: #ff0000;
 }`;
 document.head.appendChild(lppStyle)
 document.addEventListener("DOMContentLoaded", () => {
