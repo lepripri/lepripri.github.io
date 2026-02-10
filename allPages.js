@@ -2,17 +2,18 @@ function showMessage(data, OPTIONALendScript) {
     var closer = () => {setTimeout(() => {dialog.close();dialog.remove(); if(OPTIONALendScript) {OPTIONALendScript()}}, 350)}, dialog = document.createElement("dialog");dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">' + data;dialog.className = "message", Opener = () => {if (document.querySelector('dialog.message')) {Opener();return null;}else{document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener("click", closer);dialog.addEventListener("keydown", closer);document.addEventListener("keydown", closer);setTimeout(closer, 2000);return dialog;}}; return Opener();
 }
 var lppStyle = document.createElement('style');
-lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block} #fileName {height: 20px;border-radius: 30px;border-width: 2px;border-style: solid;border-color: #ff0000;margin: 4px;padding-inline: 9px;padding-block: 0px;}      button[minus] {
+lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block} #fileName {height: 20px;border-radius: 30px;border-width: 2px;border-style: solid;border-color: #ff0000;margin: 4px;padding-inline: 9px;padding-block: 0px;}      button[minus], input[type="files"][minus]::file-selector-button:hover, {
         position: absolute;
         font-size: 12px;
         padding: 2px;
         margin: 0px;
         translate: 160px 0px;
       }
-      button[minus]:hover, button[minus]:focus{
+      button[minus]:hover, button[minus]:focus, input[type="files"][minus]::file-selector-button:hover, input[type="files"][minus]:focus{
         font-size: 15px;
         translate: 162px;
-      }      button, a{
+      }
+      button, a, ::file-selector-button{
         background-color: #fcb1e3;
         border-color: #FF0000;
         border-style: solid;
@@ -27,7 +28,7 @@ lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-h
         text-decoration: none;
         color: #000000;
       }
-      button:hover, button:focus, a:hover, a:focus{
+      button:hover, button:focus, a:hover, a:focus, ::file-selector-button:hover, input[type="files"]:focus{
         font-size: 22px;
         translate: -8px 0px;
         margin-inline-end: -30px
