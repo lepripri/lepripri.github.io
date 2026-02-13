@@ -1,49 +1,5 @@
 <!DOCTYPE html>
 <html style="background-color: rgb(252, 177, 227);"><head>
-    <script>if (localStorage.recommandations !== undefined) {
-    var recommandations = JSON.parse(localStorage.recommandations);
-}else{
-    var recommandations = {
-        code: {
-            isExtInstaled: false,
-            other: []
-        },
-        converter: {
-            isAppInstaled: false,
-            isExtInstaled: false,
-            format: ".mp3",
-            other: [],
-            YouTube: []
-        },
-        extension: {
-            isExtInstaled: false,
-            other: []
-        },
-        games: {
-            isExtInstaled: false,
-            logicGames: [],
-            actionGames: [],
-            other: []
-        },
-        product: {
-            apps: [],
-            popular: [],
-            other: []
-        },
-        settings: {
-            other: []
-        }
-    }
-}
-onbeforeunload = () => {
-    localStorage.setItem("recommandations", JSON.stringify(recommandations));
-}
-function rederect (url) {
-    var redirectionLink = document.body.appendChild(document.createElement('a'));
-    redirectionLink.href = url;
-    redirectionLink.click();
-    redirectionLink.remove();
-}</script>
     <link rel="manifest" href="https://lepripri.github.io/azertyuiop/manifest.json">
     <link type="image/png" sizes="16x16" rel="icon" href="https://lepripri.github.io/instal/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html; application/xml; charset=utf-8">
