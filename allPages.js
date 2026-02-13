@@ -218,3 +218,47 @@ setInterval(() => {
         display.innerHTML = html;
     });
 }, 100);
+if (localStorage.recommandations !== undefined) {
+    var recommandations = JSON.parse(localStorage.recommandations);
+}else{
+    var recommandations = {
+        code: {
+            isExtInstaled: false,
+            other: []
+        },
+        converter: {
+            isAppInstaled: false,
+            isExtInstaled: false,
+            format: ".mp3",
+            other: [],
+            YouTube: []
+        },
+        extension: {
+            isExtInstaled: false,
+            other: []
+        },
+        games: {
+            isExtInstaled: false,
+            logicGames: [],
+            actionGames: [],
+            other: []
+        },
+        product: {
+            apps: [],
+            popular: [],
+            other: []
+        },
+        settings: {
+            other: []
+        }
+    }
+}
+onbeforeunload = () => {
+    localStorage.setItem("recommandations", JSON.stringify(recommandations));
+}
+function rederect (url) {
+    var redirectionLink = document.body.appendChild(document.createElement('a'));
+    redirectionLink.href = url;
+    redirectionLink.click();
+    redirectionLink.remove();
+}
