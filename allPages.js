@@ -262,3 +262,177 @@ function rederect (url) {
     redirectionLink.click();
     redirectionLink.remove();
 }
+var lepripriAPI = {
+    messages: {
+        alert: showMessage,
+        prompt,
+        comfirm,
+        wait: {
+            start: (data, id) => console.log("en atente de " + data + "sous l'identifian " + id + "..."),
+            end: (id) => console.log("l'attente sous l'identifiant " + id + "est terminé !")
+        },
+        info: console.info,
+        warn: console.warn,
+        error: (data) => console.error("Error: " + data)
+    },
+    video: {
+        init: () => {
+            // 1. Création de l'objet FontFace en JS
+            var myFont = new FontFace('font_1', 'url(font1.ttf)');
+
+            myFont.load().then(function(loadedFont) {
+                // 2. Ajouter la police chargée au document
+                document.fonts.add(loadedFont);
+                console.log("✅ Police font_1 chargée avec succès !");
+            }).catch(function(error) {
+                console.error("❌ Échec du chargement de la police :", error);
+            });
+
+            // 3. Injection du reste du CSS
+            document.head.innerHTML += `
+            <style>priprivideo{display: block;unicode-bidi: isolate;background-color: #000000;}priprivideo>#fileNamePart{height: 20px;width: calc(100% - 50px);background-color: #000000;margin-block-start: -40px;translate: 0px 20px;padding-inline-start: 20px;padding-inline-end: 30px;}priprivideo>#fileNamePart[content]::before{content: attr(content);}priprivideo>#timeAndControls{height: 20px;width: 100%;background-color: #000000;display: flex;align-items: center;font-size: 11px;}priprivideo>#timeAndControls>pausebtn::before{content: "▶"}priprivideo>#timeAndControls>pausebtn[pause]::before{content: "⏸"}priprivideo>#timeAndControls>pausebtn{margin-inline-start: 5px;}priprivideo>#timeAndControls>pausebtn[pause]{margin-inline-start: 2px;}priprivideo>#timeAndControls *:not([time]){min-width: 20px;width: 20px;display: block;}priprivideo *{color: #ffffff;word-break: break-all;}priprivideo>#timeAndControls>leftbtn::before{content: "◀"}priprivideo>#timeAndControls>rightbtn::before{content: "▶"}priprivideo>#timeAndControls>input[type=range]::-webkit-slider-runnable-track {width: 100%; height: 5px;cursor: default;background: transparent;border: none;border-style: solid; border-width: 1px;border-color: #ffffff;}priprivideo>#timeAndControls>input[type=range]::-webkit-slider-thumb {appearance: none;-webkit-appearance: none;height: 5px;width: 0px;background: transparent;margin-top: 0px;box-shadow: -100vw 0 0 100vw #ffffff;}priprivideo>#timeAndControls>input[type=range] {-webkit-appearance: none;width: calc(100% - 188px);background: transparent;cursor: default;clip-path: inset(0px);height: 5px;}priprivideo>#timeAndControls>timea, priprivideo>#timeAndControls>timeb {display: flex;flex-direction: row;align-items: center;justify-content: center;min-width: 60px;width: 60px;max-width: 60px;}priprivideo>#timeAndControls>timea>*, priprivideo>#timeAndControls>timeb>*{margin: 1px;}#timeAndControls>timea>*, priprivideo>#timeAndControls>timeb>*{translate: 0px -0.7px;}priprivideo>#timeAndControls>timea>n0, priprivideo>#timeAndControls>timeb>n0{translate: 0px 0px;height: 4px;width: 3px;min-width: 3px;max-width: 3px;border-style: solid;border-width: 1px;}priprivideo>#timeAndControls>timea>n1::before, priprivideo>#timeAndControls>timeb>n1::before {content: "1";font-family: font_1}priprivideo>#timeAndControls>timea>n2::before, priprivideo>#timeAndControls>timeb>n2::before {content: "2";font-family: font_1}priprivideo>#timeAndControls>timea>n3::before, priprivideo>#timeAndControls>timeb>n3::before {content: "3";font-family: font_1}priprivideo>#timeAndControls>timea>n4::before, priprivideo>#timeAndControls>timeb>n4::before {content: "4";font-family: font_1}priprivideo>#timeAndControls>timea>n5::before, priprivideo>#timeAndControls>timeb>n5::before {content: "5";font-family: font_1}priprivideo>#timeAndControls>timea>n6::before, priprivideo>#timeAndControls>timeb>n6::before {content: "6";font-family: font_1}priprivideo>#timeAndControls>timea>n7::before, priprivideo>#timeAndControls>timeb>n7::before {content: "7";font-family: font_1}priprivideo>#timeAndControls>timea>n8::before, priprivideo>#timeAndControls>timeb>n8::before {content: "8";font-family: font_1}priprivideo>#timeAndControls>timea>n9::before, priprivideo>#timeAndControls>timeb>n9::before {content: "9";font-family: font_1}priprivideo>#timeAndControls>timea>ns::before, priprivideo>#timeAndControls>timeb>ns::before {content: ":";}priprivideo>#timeAndControls>timea>ns, priprivideo>#timeAndControls>timeb>ns {translate: 0px -0.6px;font-size: 7px;font-weight: 800;}</style>`;
+            console.log("🎬 lepripri video is initialised.");
+        },
+        HTML: {
+            basic: "<div id=\"fileNamePart\"></div><video style=\"width: 100%;height: 100%;\" src=\"about:blank\"></video><div id=\"timeAndControls\"><pausebtn></pausebtn><leftbtn></leftbtn><timea time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timea><input id=\"progress\" name=\"progress\" type=\"range\" value=\"0\" min=\"0\" max=\"100\" step=\"0.001\"><timeb time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timeb><rightbtn></rightbtn></div>",
+            generateSpecial: (videoURL, OPTPARAM_videoFileName) => {var videoFileName = OPTPARAM_videoFileName; if (OPTPARAM_videoFileName == undefined) {videoFileName = "";} return "<div id=\"fileNamePart\">" + videoFileName +"</div><video style=\"width: 100%;height: 100%;\" src=\"" + videoURL + "\"></video><div id=\"timeAndControls\"><pausebtn></pausebtn><leftbtn></leftbtn><timea time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timea><input id=\"progress\" name=\"progress\" type=\"range\" value=\"0\" min=\"0\" max=\"100\" step=\"0.001\"><timeb time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timeb><rightbtn></rightbtn></div>"}
+    },
+        allVideo: [],
+    create: (videoURL, OPTPARAM_videoFileName) => {
+        var pripriVideoHTML = lepripriAPI.video.HTML.generateSpecial(videoURL, OPTPARAM_videoFileName),
+        pripriVideoNode = document.createElement("priprivideo"),
+         pripriVideoObject = new class pripriVideo {constructor() {}};
+          pripriVideoNode.innerHTML = pripriVideoHTML;
+           pripriVideoNode.setAttribute("tabindex", "0");
+            const player = pripriVideoNode;
+            const video = player.querySelector("video");
+            const pauseBtn = player.querySelector("pausebtn");
+            const progress = player.querySelector("#progress");
+            const timeA = player.querySelector("timea");
+            const timeB = player.querySelector("timeb");
+            let pressTimer;
+            let startTime;
+            let holdActive = false;
+            let didMove = false;
+            // --- LOGIQUE DU TEMPS ---
+
+            const formatTime = (seconds) => {
+                const h = Math.floor(seconds / 3600);
+                const m = Math.floor((seconds % 3600) / 60);
+                const s = Math.floor(seconds % 60);
+                return [
+                    ...String(h).padStart(2, '0').split(''),
+                    ...String(m).padStart(2, '0').split(''),
+                    ...String(s).padStart(2, '0').split('')
+                ];
+            };
+
+            const updateDigits = (container, seconds) => {
+                const digits = formatTime(seconds);
+                const digitElements = container.querySelectorAll('*:not(ns)[time]');
+
+                digits.forEach((digit, index) => {
+                    const oldEl = digitElements[index];
+                    if (oldEl) {
+                        const newTag = `n${digit}`;
+                        if (oldEl.tagName.toLowerCase() !== newTag) {
+                            const newEl = document.createElement(newTag);
+                            newEl.setAttribute("time", "");
+                            oldEl.parentNode.replaceChild(newEl, oldEl);
+                        }
+                    }
+                });
+            };
+
+            // --- ÉVÉNEMENTS SOURIS/INTERFACE ---
+
+            pauseBtn.onclick = () => {
+                if (video.paused) {
+                    video.play();
+                    pauseBtn.setAttribute("pause", "");
+                } else {
+                    video.pause();
+                    pauseBtn.removeAttribute("pause");
+                }
+            };
+
+            video.ontimeupdate = () => {
+                if (!video.duration) return; // Sécurité si la durée n'est pas encore chargée
+                const percent = (video.currentTime / video.duration) * 100;
+                progress.value = percent || 0;
+                updateDigits(timeA, video.currentTime);
+            };
+
+            video.onloadedmetadata = () => {
+                updateDigits(timeB, video.duration);
+            };
+
+            progress.oninput = () => {
+                const time = (progress.value / 100) * video.duration;
+                video.currentTime = time;
+            };
+
+            player.querySelector("leftbtn").onclick = () => video.currentTime -= 5;
+            player.querySelector("rightbtn").onclick = () => video.currentTime += 5;
+
+            // --- LOGIQUE CLAVIER (il y a un problème si il y plusieurs vidéos) ---
+
+            const handleKeyDown = (e) => {
+                if (e.ctrlKey && e.shiftKey && e.code === 'KeyI') {
+                    e.preventDefault();
+                    return;
+                }
+
+                if (e.code === 'Space' || e.code === 'Enter') {
+                    e.preventDefault();
+                    pauseBtn.click();
+                    return;
+                }
+
+                if (e.repeat) return;
+
+                if ((e.code === 'ArrowLeft' || e.code === 'ArrowRight') && !holdActive) {
+                    holdActive = true;
+                    didMove = false;
+                    startTime = Date.now();
+
+                    pressTimer = setTimeout(() => {
+                        didMove = true;
+                        pressTimer = setInterval(() => {
+                            const elapsed = (Date.now() - startTime) / 1000;
+                            const step = elapsed * 3; 
+
+                            if (e.code === 'ArrowLeft') {
+                                video.currentTime -= step;
+                            } else {
+                                video.currentTime += step;
+                            }
+                        }, 50);
+                    }, 200); 
+                }
+            };
+
+            const handleKeyUp = (e) => {
+                if (e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
+                    clearTimeout(pressTimer);
+                    clearInterval(pressTimer);
+
+                    if (!didMove) {
+                        const frameTime = 1 / 24;
+                        if (e.code === 'ArrowLeft') video.currentTime -= frameTime;
+                        else video.currentTime += frameTime;
+                    }
+
+                    holdActive = false;
+                    didMove = false;
+                }
+            };
+            player.onkeydown = handleKeyDown;
+            player.onkeyup = handleKeyUp;
+            pripriVideoObject.node = pripriVideoNode;
+            pripriVideoObject.videoNode = pripriVideoNode.querySelector('video');
+            lepripriAPI.video.allVideo.push(pripriVideoObject);
+            return pripriVideoNode; // le dévelopeur s'occupe de l'inserer
+        }
+    }
+};
