@@ -93,12 +93,12 @@ onAuthStateChanged(auth, user => {
 // ===============================
 // EXPOSE GLOBAL (IMPORTANT)
 // ===============================
-if (!lepripriAPI.auth.currentUser === null) {
-    lepripriAPI.isConnected = true;
+if (!lepripriAPI.fireBase.auth.currentUser === null) {
+    lepripriAPI.fireBase.isConnected = true;
 }
 async function saveKeyToCloud(apiKey) {
-  const user = lepripriAPI.auth.currentUser;
-  if (!user) return alert("Connecte-toi d'abord !");
+  const user = lepripriAPI.fireBase.auth.currentUser;
+  if (!user) return;
 
   try {
     await setDoc(doc(lepripriAPI.db, "users", user.uid), {
