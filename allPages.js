@@ -263,7 +263,7 @@ function rederect (url) {
     redirectionLink.click();
     redirectionLink.remove();
 }
-var lepripriAPI = {
+window.lepripriAPI = {
     messages: {
         alert: showMessage,
         prompt,
@@ -437,4 +437,4 @@ var lepripriAPI = {
         }
     }
 };
-}
+});
