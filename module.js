@@ -64,7 +64,7 @@ function registerEmail(email, password) {
 // ===============================
 // AUTH STATE
 // ===============================
-window.Pripri = {
+window.lepripriAPI = Object.assign({fireBase: {
   app,
   analytics,
   db,
@@ -78,7 +78,7 @@ window.Pripri = {
   },
   auth,
   isConnected: false
-};
+}}, window.lepripriAPI);
 onAuthStateChanged(auth, user => {
   if (user) {
     console.log("✅ Connecté :", user.uid);
