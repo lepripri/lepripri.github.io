@@ -4,109 +4,84 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-storage.js";
 import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithPopup,
-  GoogleAuthProvider,
-  GithubAuthProvider,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut
+    getAuth,
+    onAuthStateChanged,
+    signInWithPopup,
+    GoogleAuthProvider,
+    GithubAuthProvider,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-import {} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
-  authDomain: "le-pripri.firebaseapp.com",
-  projectId: "le-pripri",
-  storageBucket: "le-pripri.firebasestorage.app",
-  messagingSenderId: "80244197022",
-  appId: "1:80244197022:web:420e34b41cbcf68f02dd8f",
-  measurementId: "G-BFCPKQKX2Y"
+    apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
+    authDomain: "le-pripri.firebaseapp.com",
+    projectId: "le-pripri",
+    storageBucket: "le-pripri.firebasestorage.app",
+    messagingSenderId: "80244197022",
+    appId: "1:80244197022:web:420e34b41cbcf68f02dd8f",
+    measurementId: "G-BFCPKQKX2Y"
 };
 
-// Init
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-function logout() {
-  signOut(auth)
-    .then(() => {
-      console.log("Déconnecté ✔");
-    })
-    .catch((error) => {
-      console.error("Erreur de déconnexion", error);
-    });
+
+// Actions
+const logout = () => signOut(auth).then(() => console.log("Déconnecté ✔"));
+
+// Fonctions de sauvegarde Firestore
+async function saveKeyToCloud(apiKey) {
+    const user = auth.currentUser;
+    if (!user) {
+        console.warn("Utilisateur non connecté");
+        return;
+    }
+
+    try {
+        await setDoc(doc(db, "users", user.uid), {
+            aiKey: apiKey,
+            lastUpdate: new Date().toISOString()
+        }, { merge: true });
+        console.log("Clé sauvegardée sur ton compte Le Pripri ! ☁️");
+    } catch (e) {
+        console.error("Erreur de sauvegarde", e);
+    }
 }
 
-// PROVIDERS
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
-
-// LOGIN FUNCTIONS
-function loginGoogle() {
-  signInWithPopup(auth, googleProvider);
-}
-
-function loginGithub() {
-  signInWithPopup(auth, githubProvider);
-}
-
-function loginEmail(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
-}
-
-function registerEmail(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
-}
-
-// ===============================
-// AUTH STATE
-// ===============================
-window.lepripriAPI = Object.assign({fireBase: {
-  app,
-  analytics,
-  db,
-  storage,
-  logout,
-  login: {
-    registerEmail,
-    loginEmail,
-    loginGithub,
-    loginGoogle
-  },
-  auth,
-  isConnected: false
-}}, window.lepripriAPI);
-onAuthStateChanged(auth, user => {
-  if (user) {
-    console.log("✅ Connecté :", user.uid);
-    document.body.setAttribute("logged", "");
-    lepripriAPI.fireBase.isConnected = true;
-  } else {
-    console.log("❌ Déconnecté");
-    document.body.removeAttribute("logged");
-  }
+// Initialisation de l'API globale
+window.lepripriAPI = Object.assign(window.lepripriAPI || {}, {
+    fireBase: {
+        app,
+        db,
+        auth,
+        storage,
+        logout,
+        saveKeyToCloud, // On l'expose ici
+        login: {
+            registerEmail: (e, p) => createUserWithEmailAndPassword(auth, e, p),
+            loginEmail: (e, p) => signInWithEmailAndPassword(auth, e, p),
+            loginGithub: () => signInWithPopup(auth, new GithubAuthProvider()),
+            loginGoogle: () => signInWithPopup(auth, new GoogleAuthProvider())
+        },
+        isConnected: false
+    }
 });
 
-// ===============================
-// EXPOSE GLOBAL (IMPORTANT)
-// ===============================
-if (!lepripriAPI.fireBase.auth.currentUser === null) {
-    lepripriAPI.fireBase.isConnected = true;
-}
-async function saveKeyToCloud(apiKey) {
-  const user = lepripriAPI.fireBase.auth.currentUser;
-  if (!user) return;
+// Écouteur de connexion
+onAuthStateChanged(auth, user => {
+    if (user) {
+        console.log("✅ Connecté :", user.uid);
+        document.body.setAttribute("logged", "");
+        window.lepripriAPI.fireBase.isConnected = true;
+    } else {
+        console.log("❌ Déconnecté");
+        document.body.removeAttribute("logged");
+        window.lepripriAPI.fireBase.isConnected = false;
+    }
+});
 
-  try {
-    await setDoc(doc(lepripriAPI.db, "users", user.uid), {
-      aiKey: apiKey
-    }, { merge: true });
-    console.log("Clé sauvegardée sur ton compte Le Pripri ! ☁️");
-  } catch (e) {
-    console.error("Erreur de sauvegarde", e);
-  }
-}
 console.log("🔥 Firebase ready");
