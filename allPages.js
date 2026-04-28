@@ -263,11 +263,11 @@ function rederect (url) {
     redirectionLink.click();
     redirectionLink.remove();
 }
-window.lepripriAPI = {
+window.lepripriAPI = Object.assign({
     messages: {
         alert: showMessage,
         prompt,
-        comfirm,
+        confirm,
         wait: {
             start: (data, id) => console.log("en atente de " + data + "sous l'identifian " + id + "..."),
             end: (id) => console.log("l'attente sous l'identifiant " + id + "est terminé !")
@@ -436,5 +436,5 @@ window.lepripriAPI = {
             return pripriVideoNode; // le dévelopeur s'occupe de l'inserer
         }
     }
-};
+}, window.lepripriAPI);
 });
