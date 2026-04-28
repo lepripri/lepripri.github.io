@@ -83,7 +83,7 @@ onAuthStateChanged(auth, user => {
   if (user) {
     console.log("✅ Connecté :", user.uid);
     document.body.setAttribute("logged", "");
-    Pripri.isConnected = true;
+    lepripriAPI.isConnected = true;
   } else {
     console.log("❌ Déconnecté");
     document.body.removeAttribute("logged");
@@ -93,18 +93,18 @@ onAuthStateChanged(auth, user => {
 // ===============================
 // EXPOSE GLOBAL (IMPORTANT)
 // ===============================
-if (!Pripri.auth.currentUser === null) {
-    Pripri.isConnected = true;
+if (!lepripriAPI.auth.currentUser === null) {
+    lepripriAPI.isConnected = true;
 }
 async function saveKeyToCloud(apiKey) {
-  const user = Pripri.auth.currentUser;
+  const user = lepripriAPI.auth.currentUser;
   if (!user) return alert("Connecte-toi d'abord !");
 
   try {
-    await setDoc(doc(Pripri.db, "users", user.uid), {
+    await setDoc(doc(lepripriAPI.db, "users", user.uid), {
       aiKey: apiKey
     }, { merge: true });
-    console.log("Clé sauvegardée sur ton compte Pripri ! ☁️");
+    console.log("Clé sauvegardée sur ton compte Le Pripri ! ☁️");
   } catch (e) {
     console.error("Erreur de sauvegarde", e);
   }
