@@ -52,8 +52,15 @@
                      break;
 
                  case "avec Facebook":
-                     alert("Facebook n'est pas encore configuré dans module.js");
-                     break;
+                     api.login.loginFacebook()
+                         .then((result) => {
+                     console.log("Connecté via Facebook !");
+                 })
+                 .catch(err => {
+                     console.error("Erreur Facebook:", err.code, err.message);
+                     alert("Erreur de connexion Facebook : " + err.message);
+                 });
+                 break;
              }
              connect.value = "se connecter ...";
          };
