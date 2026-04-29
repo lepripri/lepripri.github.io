@@ -101,7 +101,7 @@ window.lepripriAPI = Object.assign(window.lepripriAPI || {}, {
 });
 
 // Écouteur de connexion
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(auth, user, async () => {
     if (user) {
         console.log("✅ Connecté :", user.uid);
         document.body.setAttribute("logged", "");
