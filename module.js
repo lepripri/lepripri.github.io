@@ -15,6 +15,27 @@ import {
     FacebookAuthProvider
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
+async function syncUserProfile(user) {
+    if (!user) return;
+
+    const userRef = doc(db, "users", user.uid);
+    const userData = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName || "Anonyme",
+        photoURL: user.photoURL || "",
+        lastLogin: new Date().toISOString()
+    };
+
+    try {
+        // "merge: true" évite d'écraser la aiKey si elle existe déjà
+        await setDoc(userRef, userData, { merge: true });
+        console.log("Profil synchronisé dans Firestore ✔");
+    } catch (e) {
+        console.error("Erreur Firestore :", e);
+    }
+}
+
 const firebaseConfig = {
     apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
     authDomain: "le-pripri.firebaseapp.com",
@@ -69,7 +90,13 @@ window.lepripriAPI = Object.assign(window.lepripriAPI || {}, {
             loginGoogle: () => signInWithRedirect(auth, new GoogleAuthProvider()),
             loginFacebook: () => signInWithRedirect(auth, new FacebookAuthProvider())
         },
-        isConnected: false
+        isConnected: false,
+        saveData: async (data) => {
+            const user = auth.currentUser;
+            if (user) {
+                await setDoc(doc(db, "users", user.uid), data, { merge: true });
+            }
+        }
     }
 });
 
