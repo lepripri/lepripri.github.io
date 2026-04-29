@@ -64,5 +64,10 @@
              }
              connect.value = "se connecter ...";
          };
+            setTimeout(() => {
+                if (lepripriAPI.fireBase.isConnected) {
+                    open("https://lepripri.github.io/", "_self");
+                }
+            }, 500)
     </script>
 </html>
