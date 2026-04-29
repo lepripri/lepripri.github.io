@@ -96,7 +96,8 @@ window.lepripriAPI = Object.assign(window.lepripriAPI || {}, {
             if (user) {
                 await setDoc(doc(db, "users", user.uid), data, { merge: true });
             }
-        }
+        },
+        updateUserData
     }
 });
 
