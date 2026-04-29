@@ -51,7 +51,22 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+async function updateUserData(data) {
+    const user = auth.currentUser;
+    if (!user) {
+        console.warn("Impossible de sauvegarder : aucun utilisateur connecté.");
+        return;
+    }
 
+    try {
+        // 'doc(db, "users", user.uid)' pointe vers ton document
+        // 'data' est l'objet contenant les champs à ajouter/modifier
+        await setDoc(doc(db, "users", user.uid), data, { merge: true });
+        console.log("Données mises à jour avec succès !");
+    } catch (e) {
+        console.error("Erreur lors de la sauvegarde :", e);
+    }
+}
 // Actions
 const logout = () => signOut(auth).then(() => console.log("Déconnecté ✔"));
 
