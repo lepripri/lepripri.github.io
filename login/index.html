@@ -6,8 +6,9 @@
     <body>
         <script>
             document.body.remove();
-            document.querySelector("html").innerHTML += '<main><div><title>se connecter</title><text>nom d\'utilisateur (ou e-mail)</text><input type="email" id="id"><text>mot de passe</text><input type="password" id="passwordHidden"><input type="text" id="password" hidden="" readonly=""><!-- important de mettre 10px au lieu de 60px pour éviter que le voisin regarde mot de passe atentivement * --></div></main>';
+            document.querySelector("html").innerHTML += '<main><div><title>se connecter</title><text>nom d\'utilisateur (ou e-mail)</text><input type="email" id="id"><text>mot de passe</text><input type="password" id="passwordHidden"><input type="text" id="password" hidden="" readonly=""><!-- important de mettre 10px au lieu de 60px pour éviter que le voisin regarde mot de passe atentivement * --><button id="show">aff. MDP</button><select id="connect"><option disabled="" style="font-size: 10px;padding: 0px;margin: 0px;">se connecter ...</option><option>avec les identifiants</option><option>avec Google</option><option>avec Facebook</option><option>avec Github</option><option disabled="" title="pas sécure" aria-label="avec ID de compte (pas sécure)">avec ID de compte</option><option disabled="">plus d'options au fil du temps</option></select></div></main>';
             document.head.innerHTML += '<style>main {display: flex;flex-direction: column;align-items: center;justify-content: center;height: 100%;height: -webkit-fill-available;width: 100%;width: -webkit-fill-available;position: absolute;} div {display: flex;flex-direction: column;width: 750px;} title {display: block;font-family: sans-serif;font-size: 130px;}[hidden] {display: none !important;} text {display: block;font-family: sans-serif;font-size: 60px;} input {display: block;font-family: sans-serif;font-size: 60px;} input#password {font-size: 10px;}</style>';
         </script>
+        <script type="module" src="https://lepripri.github.io/module.js"></script><script src="https://lepripri.github.io/allPages.js"></script>
     </body>
 </html>
