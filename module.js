@@ -106,6 +106,7 @@ onAuthStateChanged(auth, user => {
         console.log("✅ Connecté :", user.uid);
         document.body.setAttribute("logged", "");
         window.lepripriAPI.fireBase.isConnected = true;
+        await syncUserProfile(user);
     } else {
         console.log("❌ Déconnecté");
         document.body.removeAttribute("logged");
