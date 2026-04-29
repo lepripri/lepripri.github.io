@@ -1,0 +1,16 @@
+<!doctype html><script>// Détecter si on vient de l'extension
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('type') === 'webextensionConnect') {
+    
+    // Attendre que Firebase confirme la connexion
+    window.lepripriAPI.fireBase.auth.onAuthStateChanged((user) => {
+        if (user) {
+            // Envoyer un message DOM que le Content Script pourra intercepter
+            window.postMessage({ 
+                source: "lepripri-site", 
+                status: "connected", 
+                uid: user.uid 
+            }, "*");
+        }
+    });
+}</script>
