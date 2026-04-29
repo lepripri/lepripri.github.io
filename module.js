@@ -11,7 +11,8 @@ import {
     GithubAuthProvider,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    signOut
+    signOut,
+    FacebookAuthProvider
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -65,7 +66,8 @@ window.lepripriAPI = Object.assign(window.lepripriAPI || {}, {
             registerEmail: (e, p) => createUserWithEmailAndPassword(auth, e, p),
             loginEmail: (e, p) => signInWithEmailAndPassword(auth, e, p),
             loginGithub: () => signInWithPopup(auth, new GithubAuthProvider()),
-            loginGoogle: () => signInWithPopup(auth, new GoogleAuthProvider())
+            loginGoogle: () => signInWithPopup(auth, new GoogleAuthProvider()),
+            loginFacebook: () => signInWithPopup(auth, new FacebookAuthProvider())
         },
         isConnected: false
     }
