@@ -65,9 +65,9 @@ window.lepripriAPI = Object.assign(window.lepripriAPI || {}, {
         login: {
             registerEmail: (e, p) => createUserWithEmailAndPassword(auth, e, p),
             loginEmail: (e, p) => signInWithEmailAndPassword(auth, e, p),
-            loginGithub: () => signInWithPopup(auth, new GithubAuthProvider()),
-            loginGoogle: () => signInWithPopup(auth, new GoogleAuthProvider()),
-            loginFacebook: () => signInWithPopup(auth, new FacebookAuthProvider())
+            loginGithub: () => signInWithRedirect(auth, new GithubAuthProvider()),
+            loginGoogle: () => signInWithRedirect(auth, new GoogleAuthProvider()),
+            loginFacebook: () => signInWithRedirect(auth, new FacebookAuthProvider())
         },
         isConnected: false
     }
