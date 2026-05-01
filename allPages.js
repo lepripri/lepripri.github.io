@@ -2,6 +2,9 @@ addEventListener("DOMContentLoaded", () => {
 function showMessage(data, OPTIONALendScript) {
     var closer = () => {setTimeout(() => {dialog.close();dialog.remove(); if(OPTIONALendScript) {OPTIONALendScript()}}, 350)}, dialog = document.createElement("dialog");dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">' + data;dialog.className = "message", Opener = () => {if (document.querySelector('dialog.message')) {Opener();return null;}else{document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener("click", closer);dialog.addEventListener("keydown", closer);document.addEventListener("keydown", closer);setTimeout(closer, 2000);return dialog;}}; return Opener();
 }
+function rederect (url) {
+    open(url, "_self");
+}
 var lppStyle = document.createElement('style');
 lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block} #fileName {height: 20px;border-radius: 30px;border-width: 2px;border-style: solid;border-color: #ff0000;margin: 4px;padding-inline: 9px;padding-block: 0px;}      button[minus], input[type="files"][minus]::file-selector-button:hover, {
         position: absolute;
