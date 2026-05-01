@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html style="background-color: rgb(252, 177, 227);"><head>
-    
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{your-app-id}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{api-version}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-    <meta name="google-site-verification" content="Ci23EmEGsXkvVZIpOdLWNN5yOyJMWLHQrdcpBGyY67E" />
+        <meta name="google-site-verification" content="Ci23EmEGsXkvVZIpOdLWNN5yOyJMWLHQrdcpBGyY67E" />
     <link rel="manifest" href="https://lepripri.github.io/azertyuiop/manifest.json">
     <link type="image/png" sizes="16x16" rel="icon" href="https://lepripri.github.io/instal/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html; application/xml; charset=utf-8">
@@ -39,7 +17,9 @@
     
     <text class="homeTitle">reccomendations le pripri</text><div class="homeAction"><div class="homeActionItem" id="connect" title="afin de bon fonctionnement et de plus de fonctionnalitées instalez l'extension le pripri"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 24.5px;" title="instaler l'extension le pripri">connection</div></div><div class="homeActionItem" id="downladExtension" title="afin de bon fonctionnement et de plus de fonctionnalitées instalez l'extension le pripri"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 24.5px;" title="instaler l'extension le pripri">instaler l'ext.</div></div><div class="homeActionItem" id="draw"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/le%20pripri%20draw%20-%20128.png" draggable="false"></div><div class="homeActionItemText">dessiner</div></div></div><text class="homeTitle">toutes les catégories</text><div class="homeAction"><div class="homeActionItem" id="converter"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px_1.png"></div><div class="homeActionItemText" title="convertiseur pour baladeur mp4">converti.</div></div><div class="homeActionItem" id="product"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Product.png" draggable="false"></div><div class="homeActionItemText">produits</div></div><div class="homeActionItem" id="code"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Source%20Code_1.png" draggable="false"></div><div class="homeActionItemText">code</div></div><div class="homeActionItem" id="setings"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false"></div><div class="homeActionItemText">paramètres</div></div><div class="homeActionItem" id="extension"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/icons8_puzzle_100px_2.png" draggable="false"></div><div class="homeActionItemText">extensions</div></div><div id="games" class="homeActionItem"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png"></div><div class="homeActionItemText">jeux</div></div><div class="homeActionItem" id="draw"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/le%20pripri%20draw%20-%20128.png" draggable="false"></div><div class="homeActionItemText">draw</div></div></div><script>var click = "click", _self = "_self", eventListenerCode = () => {rederect("https://lepripri.github.io/code", _self)}; code.addEventListener(click, eventListenerCode);extension.addEventListener("click", () => {rederect("https://lepripri.github.io/instal/extension/")});setings.addEventListener("click", () => {rederect("https://lepripri.github.io/lepripri/setting")})</script>
   
-  <script src="https://lepripri.github.io/instal/allDocument.js"></script><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden=""><script>converter.addEventListener('mouseenter', () => {
+  <script src="https://lepripri.github.io/instal/allDocument.js"></script><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden=""><script>function rederect (url) {
+    open(url, "_self");
+}converter.addEventListener('mouseenter', () => {
     document.querySelector('#converter img').src = 'https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px.png';
 });
 converter.addEventListener('mouseleave', () => {
