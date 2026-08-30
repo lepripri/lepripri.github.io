@@ -1,0 +1,14 @@
+{
+    "theme_color": "#fab2e1",
+    "name": "le pripri website",
+    "short_name": "le pripri",
+    "icons": [{
+        "src": "icons/page-256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+        }],
+    "start_url": "https://milliminutes.github.io/home",
+    "display": "standalone",
+    "background_color": "#fab2e1",
+    "description": "le pripri website"
+}
