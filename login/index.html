@@ -1,0 +1,73 @@
+<!doctype HTML>
+<html>
+    <head>
+        <!-- head non complété sans script -->
+    </head>
+    <body>
+        <!-- body non complété sans script -->
+    </body>
+    <script type="module" src="https://milliminutes.github.io/module.js"></script>
+    <script src="https://milliminutes.github.io/allPages.js"></script>
+    <script>
+         document.body.remove();
+         document.querySelector("html").innerHTML += '<main><div><title>se connecter</title><text>nom d\'utilisateur (ou e-mail)</text><input type="email" id="id"><text>mot de passe</text><input type="password" id="passwordHidden"><input type="text" id="password" hidden="" readonly=""><div><button id="show">aff. MDP</button><select id="connect"><option disabled="" style="font-size: 10px;padding: 0px;margin: 0px;">se connecter ...</option><option>avec les identifiants</option><option>avec Google</option><option>avec Facebook</option><option>avec Github</option><option disabled="" title="pas sécure" aria-label="avec ID de compte (pas sécure)">avec ID de compte</option><option disabled="">plus d\'options au fil du temps</option></select></div></div></main>';
+         document.head.innerHTML += '<style>main {display: flex;flex-direction: column;align-items: center;justify-content: center;height: 100%;height: -webkit-fill-available;width: 100%;width: -webkit-fill-available;position: absolute;} div {display: flex;flex-direction: column;width: 750px;} title {display: block;font-family: sans-serif;font-size: 130px;}[hidden] {display: none !important;} text {display: block;font-family: sans-serif;font-size: 60px;} input {display: block;font-family: sans-serif;font-size: 60px;} input#password {font-size: 10px;} select {width: 100%;width: -webkit-fill-available;border-style: solid;border-color: #ff0000;border-width: 4px;cursor: pointer;background-color: #fcb1e3;} button {width: 100%;width: -webkit-fill-available;} div > div {display: flex;flex-direction: row;width: 100%;width: -webkit-fill-available;}</style>';
+
+         // Gestion de l'affichage du mot de passe
+         show.onclick = () => {
+             if (passwordHidden.type === "password") {
+                 passwordHidden.type = "text";
+                 show.innerText = "cach. MDP";
+             } else {
+                 passwordHidden.type = "password";
+                 show.innerText = "aff. MDP";
+             }
+         };
+         connect.value = "se connecter ...";
+
+         connect.onchange = () => {
+             const api = window.milliminutesAPI.fireBase;
+             const email = document.getElementById("id").value;
+             const pwd = document.getElementById("passwordHidden").value;
+
+             switch (connect.value) {
+                case "avec les identifiants":
+                     if (email && pwd) {
+                         api.login.loginEmail(email, pwd)
+                             .then(() => alert("Connexion réussie !"))
+                             .catch(err => alert("Erreur : " + err.message));
+                     } else {
+                         alert("Veuillez remplir les champs.");
+                     }
+                     break;
+
+                 case "avec Google":
+                     api.login.loginGoogle()
+                         .catch(err => console.error(err));
+                     break;
+
+                 case "avec Github":
+                     api.login.loginGithub()
+                         .catch(err => console.error(err));
+                     break;
+
+                 case "avec Facebook":
+                     api.login.loginFacebook()
+                         .then((result) => {
+                     console.log("Connecté via Facebook !");
+                 })
+                 .catch(err => {
+                     console.error("Erreur Facebook:", err.code, err.message);
+                     alert("Erreur de connexion Facebook : " + err.message);
+                 });
+                 break;
+             }
+             connect.value = "se connecter ...";
+         };
+            setTimeout(() => {
+                if (milliminutesAPI.fireBase.isConnected) {
+                    open("https://milliminutes.github.io/", "_self");
+                }
+            }, 1000)
+    </script>
+</html>
