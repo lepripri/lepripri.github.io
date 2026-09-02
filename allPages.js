@@ -318,12 +318,12 @@ window.lepripriAPI = Object.assign({
         prompt,
         confirm,
         wait: {
-            start: function (data, id) console.log("en atente de " + data + "sous l'identifian " + id + "..."),
-            end: function (id) console.log("l'attente sous l'identifiant " + id + "est terminé !")
+            start: function (data, id) {console.log("en atente de " + data + "sous l'identifian " + id + "...")},
+            end: function (id) {console.log("l'attente sous l'identifiant " + id + "est terminé !")}
         },
         info: console.info,
         warn: console.warn,
-        error: function (data) console.error("Error: " + data)
+        error: function (data) {console.error("Uncaught Error: " + data)}
     },
     video: {
         init: function () {
