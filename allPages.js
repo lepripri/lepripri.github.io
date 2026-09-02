@@ -162,7 +162,7 @@ window.bigCodeShelter = []; // Variable globale pour stocker les codes de TOUS l
 window.lepripriCopy = function(index) {
     const textToCopy = window.bigCodeShelter[index].raw;
     if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textToCopy).then(function () showSuccess(index));
+        navigator.clipboard.writeText(textToCopy).then(showSuccess(index));
     } else {
         fallbackCopy(textToCopy, index);
     }
