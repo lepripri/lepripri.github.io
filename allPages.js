@@ -182,7 +182,7 @@ function showSuccess(index) {
     const btn = document.querySelectorAll('.copy')[index];
     if(btn) {
         btn.classList.add('copied');
-        setTimeout(function () btn.classList.remove('copied'), 2000);
+        setTimeout(btn.classList.remove('copied'), 2000);
     }
 }
 
