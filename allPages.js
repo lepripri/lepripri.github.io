@@ -1,12 +1,77 @@
-addEventListener("DOMContentLoaded", () => {
+addEventListener("DOMContentLoaded", function () {
 function showMessage(data, OPTIONALendScript) {
-    var closer = () => {setTimeout(() => {dialog.close();dialog.remove(); if(OPTIONALendScript) {OPTIONALendScript()}}, 350)}, dialog = document.createElement("dialog");dialog.innerHTML = '<img src="https://milliminutes.github.io/milliminutes/icons/Warning.png">' + data;dialog.className = "message", Opener = () => {if (document.querySelector('dialog.message')) {Opener();return null;}else{document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener("click", closer);dialog.addEventListener("keydown", closer);document.addEventListener("keydown", closer);setTimeout(closer, 2000);return dialog;}}; return Opener();
+    var closer = function () {
+        setTimeout(function () {
+            dialog.close();
+            dialog.remove();
+            if(OPTIONALendScript) {
+                OPTIONALendScript();
+            }
+        }, 350);
+    },
+    dialog = document.createElement("dialog");
+    dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">' + data;
+    dialog.className = "message";
+    Opener = function () {
+        if (document.querySelector('dialog.message')) {
+            setTimeout(function () {
+                Opener();
+            });
+            return;
+        }else{
+            document.body.appendChild(dialog);
+            dialog.showModal();
+            dialog.addEventListener("click", closer);
+            dialog.addEventListener("keydown", closer);
+            document.addEventListener("keydown", closer);
+            setTimeout(closer, 2000);
+            return dialog;
+        }
+    };
+    return;
 }
 function rederect (url) {
     open(url, "_self");
 }
 var lppStyle = document.createElement('style');
-lppStyle.textContent = `html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://milliminutes.github.io/milliminutes/icons/Warning.png"] {width: 1em; height: 1em; display: block} #fileName {height: 20px;border-radius: 30px;border-width: 2px;border-style: solid;border-color: #ff0000;margin: 4px;padding-inline: 9px;padding-block: 0px;}      button[minus], input[type="files"][minus]::file-selector-button:hover, {
+lppStyle.textContent = `html, body {
+        background-color: #fcb1e3;
+        margin: 0px;
+        min-height: 700px;
+        width: 100%;
+        height: 100%;
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+      }
+      ::backdrop {
+        background: none
+      }
+      dialog {
+        background: #fcb1e3;
+        border-color: #ff0000;
+        border-style: solid;
+      }
+      dialog.message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-block-start: 0px;
+      }
+      dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {
+        width: 1em; height: 1em; display: block
+      }
+      #fileName {
+        height: 20px;
+        border-radius: 30px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #ff0000;
+        margin: 4px;
+        padding-inline: 9px;
+        padding-block: 0px;
+      }
+      button[minus], input[type="files"][minus]::file-selector-button:hover, {
         position: absolute;
         font-size: 12px;
         padding: 2px;
@@ -84,39 +149,20 @@ markdown {
     color: #ff0000;
 }`;
 document.head.appendChild(lppStyle)
-document.addEventListener("DOMContentLoaded", () => {
-  if (!window.milliminutes) {
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.lepripri) {
     console.error("Uncaught Error: failled to load Firebase in allPages.js file");
     return;
   }
-
-  console.log("Auth dispo :", milliminutes.auth);
-});
-var header = {
-    node: document.createElement('header'),
-    emplacement: document.body.childNodes.item(0),
-    nodeID: 'header',
-    innerHTML: '<style>#header {display: flex; * {margin: 3px;} #lppProduct {width: 112px;background-color: #fcb1e3;border-color: #FF0000;border-style: solid;border-width: 3px;padding-inline: 7px;padding-block: 5px;font-family: arial;font-size: 20px;font-weight: bold;cursor: pointer;outline: none !important;text-decoration: none;color: #000000;} #lppProduct:hover, #lppProduct:focus {font-size: 22px;translate: -4px 0px;}} logo[milliminutes=""]::before {content: "";width: 30px; height: 30px; background-size: 30px; background-repeat: no-repeat;background-image: url("https://milliminutes.github.io/azertyuiop/icons/page-512.png");} milliminutes[text]::before {content: "milliminutes"} milliminutes[text] {font-size: 30px;font-family: sans-serif;font-weight: 700;}</style><logo milliminutes=""></logo><milliminutes text=""></milliminutes><hr><button id="login">se connecter</button><hr><button id="instalExt">instaler l\'extension</button><hr>',
-    selectNode: document.createElement('select'),
-    selectNodeID: 'lppProduct',
-    selectInnerHTML: '<option>&lt;/&gt; code</option><option>✏️ draw</option><option>🎮 games</option>',
-    selectText: 'milliminutes'
 }
-header.node.innerHTML = header.innerHTML;
-header.node.id = header.nodeID;
-header.selectNode.innerHTML = '<option disabled="">' + header.selectText +'</option>' + header.selectInnerHTML;
-header.selectNode.id = header.selectNodeID;
-header.selectNode.value = header.selectText;
-header.node.appendChild(header.selectNode);
-document.body.insertBefore(header.node, header.emplacement);
 document.querySelectorAll('script').forEach(s => s.remove());
 // --- SORTIR LES FONCTIONS DU INTERVAL POUR ÉVITER LES ERREURS ---
 window.bigCodeShelter = []; // Variable globale pour stocker les codes de TOUS les blocs
 
-window.milliminutesCopy = function(index) {
+window.lepripriCopy = function(index) {
     const textToCopy = window.bigCodeShelter[index].raw;
     if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textToCopy).then(() => showSuccess(index));
+        navigator.clipboard.writeText(textToCopy).then(function () showSuccess(index));
     } else {
         fallbackCopy(textToCopy, index);
     }
@@ -136,17 +182,17 @@ function showSuccess(index) {
     const btn = document.querySelectorAll('.copy')[index];
     if(btn) {
         btn.classList.add('copied');
-        setTimeout(() => btn.classList.remove('copied'), 2000);
+        setTimeout(function () btn.classList.remove('copied'), 2000);
     }
 }
 
 // --- LE MOTEUR DE RENDU OPTIMISÉ ---
-setInterval(() => {
+setInterval(function () {
     // On vide le shelter global au début de chaque cycle de rendu complet
     // Ou mieux : on le gère par élément pour éviter les conflits d'index
     let currentGlobalIndex = 0; 
 
-    document.querySelectorAll("markdown").forEach((markdownElement) => {
+    document.querySelectorAll("markdown").forEach(function (markdownElement) {
         const contentEl = markdownElement.querySelector("content");
         if (!contentEl) return;
 
@@ -167,7 +213,7 @@ setInterval(() => {
         let localBigCodeShelter = [];
         
         // 1. Extraction Gros Blocs
-        let step1 = rawContent.replace(/```(\w+)?\n?([\s\S]+?)```/g, (match, lang, code) => {
+        let step1 = rawContent.replace(/```(\w+)?\n?([\s\S]+?)```/g, function (match, lang, code) {
             let languageName = lang ? lang : "code";
             let cleanCode = code.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
             localBigCodeShelter.push({ lang: languageName, content: cleanCode, raw: code.trim() });
@@ -179,7 +225,7 @@ setInterval(() => {
 
         // 2. Extraction Code Simple
         let smallCodeShelter = [];
-        let step2 = step1.replace(/`([^`]+)`/g, (m, code) => {
+        let step2 = step1.replace(/`([^`]+)`/g, function (m, code) {
             let clean = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             smallCodeShelter.push(clean);
             return `%%SMALL_CODE_${smallCodeShelter.length - 1}%%`;
@@ -203,13 +249,13 @@ setInterval(() => {
 
         // 4. Réinjection
         // Gros blocs avec l'index global correct
-        html = html.replace(/%%BIG_CODE_(\d+)%%/g, (m, id) => {
+        html = html.replace(/%%BIG_CODE_(\d+)%%/g, function (m, id) {
             const item = window.bigCodeShelter[id];
-            return `<pre><div class="code-header"><span class="code-lang">${item.lang}</span><button class="copy" onclick="milliminutesCopy(${id})" title="copier"></button></div><code>${item.content}</code></pre>`;
+            return `<pre><div class="code-header"><span class="code-lang">${item.lang}</span><button class="copy" onclick="lepripriCopy(${id})" title="copier"></button></div><code>${item.content}</code></pre>`;
         });
 
         // Petits codes
-        smallCodeShelter.forEach((code, i) => {
+        smallCodeShelter.forEach(function (code, i) {
             html = html.replace(`%%SMALL_CODE_${i}%%`, `<code notpre>${code}</code>`);
         });
 
@@ -257,7 +303,7 @@ if (localStorage.recommandations !== undefined) {
         }
     }
 }
-onbeforeunload = () => {
+onbeforeunload = function () {
     localStorage.setItem("recommandations", JSON.stringify(recommandations));
 }
 function rederect (url) {
@@ -266,21 +312,21 @@ function rederect (url) {
     redirectionLink.click();
     redirectionLink.remove();
 }
-window.milliminutesAPI = Object.assign({
+window.lepripriAPI = Object.assign({
     messages: {
         alert: showMessage,
         prompt,
         confirm,
         wait: {
-            start: (data, id) => console.log("en atente de " + data + "sous l'identifian " + id + "..."),
-            end: (id) => console.log("l'attente sous l'identifiant " + id + "est terminé !")
+            start: function (data, id) console.log("en atente de " + data + "sous l'identifian " + id + "..."),
+            end: function (id) console.log("l'attente sous l'identifiant " + id + "est terminé !")
         },
         info: console.info,
         warn: console.warn,
-        error: (data) => console.error("Error: " + data)
+        error: function (data) console.error("Error: " + data)
     },
     video: {
-        init: () => {
+        init: function () {
             // 1. Création de l'objet FontFace en JS
             var myFont = new FontFace('font_1', 'url(font1.ttf)');
 
@@ -293,22 +339,162 @@ window.milliminutesAPI = Object.assign({
             });
 
             // 3. Injection du reste du CSS
-            document.head.innerHTML += `
-            <style>milliminutesvideo{display: block;unicode-bidi: isolate;background-color: #000000;}milliminutesvideo>#fileNamePart{height: 20px;width: calc(100% - 50px);background-color: #000000;margin-block-start: -40px;translate: 0px 20px;padding-inline-start: 20px;padding-inline-end: 30px;}milliminutesvideo>#fileNamePart[content]::before{content: attr(content);}milliminutesvideo>#timeAndControls{height: 20px;width: 100%;background-color: #000000;display: flex;align-items: center;font-size: 11px;}milliminutesvideo>#timeAndControls>pausebtn::before{content: "▶"}milliminutesvideo>#timeAndControls>pausebtn[pause]::before{content: "⏸"}milliminutesvideo>#timeAndControls>pausebtn{margin-inline-start: 5px;}milliminutesvideo>#timeAndControls>pausebtn[pause]{margin-inline-start: 2px;}milliminutesvideo>#timeAndControls *:not([time]){min-width: 20px;width: 20px;display: block;}milliminutesvideo *{color: #ffffff;word-break: break-all;}milliminutesvideo>#timeAndControls>leftbtn::before{content: "◀"}milliminutesvideo>#timeAndControls>rightbtn::before{content: "▶"}milliminutesvideo>#timeAndControls>input[type=range]::-webkit-slider-runnable-track {width: 100%; height: 5px;cursor: default;background: transparent;border: none;border-style: solid; border-width: 1px;border-color: #ffffff;}milliminutesvideo>#timeAndControls>input[type=range]::-webkit-slider-thumb {appearance: none;-webkit-appearance: none;height: 5px;width: 0px;background: transparent;margin-top: 0px;box-shadow: -100vw 0 0 100vw #ffffff;}milliminutesvideo>#timeAndControls>input[type=range] {-webkit-appearance: none;width: calc(100% - 188px);background: transparent;cursor: default;clip-path: inset(0px);height: 5px;}milliminutesvideo>#timeAndControls>timea, milliminutesvideo>#timeAndControls>timeb {display: flex;flex-direction: row;align-items: center;justify-content: center;min-width: 60px;width: 60px;max-width: 60px;}milliminutesvideo>#timeAndControls>timea>*, milliminutesvideo>#timeAndControls>timeb>*{margin: 1px;}#timeAndControls>timea>*, milliminutesvideo>#timeAndControls>timeb>*{translate: 0px -0.7px;}milliminutesvideo>#timeAndControls>timea>n0, milliminutesvideo>#timeAndControls>timeb>n0{translate: 0px 0px;height: 4px;width: 3px;min-width: 3px;max-width: 3px;border-style: solid;border-width: 1px;}milliminutesvideo>#timeAndControls>timea>n1::before, milliminutesvideo>#timeAndControls>timeb>n1::before {content: "1";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n2::before, milliminutesvideo>#timeAndControls>timeb>n2::before {content: "2";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n3::before, milliminutesvideo>#timeAndControls>timeb>n3::before {content: "3";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n4::before, milliminutesvideo>#timeAndControls>timeb>n4::before {content: "4";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n5::before, milliminutesvideo>#timeAndControls>timeb>n5::before {content: "5";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n6::before, milliminutesvideo>#timeAndControls>timeb>n6::before {content: "6";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n7::before, milliminutesvideo>#timeAndControls>timeb>n7::before {content: "7";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n8::before, milliminutesvideo>#timeAndControls>timeb>n8::before {content: "8";font-family: font_1}milliminutesvideo>#timeAndControls>timea>n9::before, milliminutesvideo>#timeAndControls>timeb>n9::before {content: "9";font-family: font_1}milliminutesvideo>#timeAndControls>timea>ns::before, milliminutesvideo>#timeAndControls>timeb>ns::before {content: ":";}milliminutesvideo>#timeAndControls>timea>ns, milliminutesvideo>#timeAndControls>timeb>ns {translate: 0px -0.6px;font-size: 7px;font-weight: 800;}</style>`;
-            console.log("🎬 milliminutes video is initialised.");
+            document.head.innerHTML += `<style>lepriprivideo{
+    display: block;
+    unicode-bidi: isolate;
+    background-color: #000000;
+}
+lepriprivideo>#fileNamePart{
+    height: 20px;
+    width: calc(100% - 50px);
+    background-color: #000000;
+    margin-block-start: -40px;
+    translate: 0px 20px;
+    padding-inline-start: 20px;
+    padding-inline-end: 30px;
+}
+lepriprivideo>#fileNamePart[content]::before{
+    content: attr(content);
+}
+lepriprivideo>#timeAndControls{
+    height: 20px;
+    width: 100%;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+}
+lepriprivideo>#timeAndControls>pausebtn::before{
+    content: "▶"
+}
+lepriprivideo>#timeAndControls>pausebtn[pause]::before{
+    content: "⏸"
+}
+lepriprivideo>#timeAndControls>pausebtn{
+    margin-inline-start: 5px;
+}
+lepriprivideo>#timeAndControls>pausebtn[pause]{
+    margin-inline-start: 2px;
+}lepriprivideo>#timeAndControls *:not([time]){
+    min-width: 20px;
+    width: 20px;
+    display: block;
+}
+lepriprivideo *{
+    color: #ffffff;
+    word-break: break-all;
+}
+lepriprivideo>#timeAndControls>leftbtn::before{
+    content: "◀"
+}
+lepriprivideo>#timeAndControls>rightbtn::before{
+    content: "▶"
+}
+lepriprivideo>#timeAndControls>input[type=range]::-webkit-slider-runnable-track {
+    width: 100%; 
+    height: 5px;
+    cursor: default;
+    background: transparent;
+    border: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ffffff;
+}
+lepriprivideo>#timeAndControls>input[type=range]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 5px;
+    width: 0px;
+    background: transparent;
+    margin-top: 0px;
+    box-shadow: -100vw 0 0 100vw #ffffff;
+}
+lepriprivideo>#timeAndControls>input[type=range] {
+    -webkit-appearance: none;
+    width: calc(100% - 188px);
+    background: transparent;
+    cursor: default;
+    clip-path: inset(0px);
+    height: 5px;
+}
+lepriprivideo>#timeAndControls>timea, lepriprivideo>#timeAndControls>timeb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    width: 60px;
+    max-width: 60px;
+}
+lepriprivideo>#timeAndControls>timea>*, lepriprivideo>#timeAndControls>timeb>*{
+    margin: 1px;
+}
+#timeAndControls>timea>*, lepriprivideo>#timeAndControls>timeb>*{
+    translate: 0px -0.7px;
+}lepriprivideo>#timeAndControls>timea>n0, lepriprivideo>#timeAndControls>timeb>n0{
+    translate: 0px 0px;
+    height: 4px;
+    width: 3px;
+    min-width: 3px;
+    max-width: 3px;
+    border-style: solid;
+    border-width: 1px;
+}
+lepriprivideo>#timeAndControls>timea>n1::before, lepriprivideo>#timeAndControls>timeb>n1::before {
+    content: "1";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n2::before, lepriprivideo>#timeAndControls>timeb>n2::before {
+    content: "2";
+    font-family: font_1;
+}lepriprivideo>#timeAndControls>timea>n3::before, lepriprivideo>#timeAndControls>timeb>n3::before {
+    content: "3";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n4::before, lepriprivideo>#timeAndControls>timeb>n4::before {
+    content: "4";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n5::before, lepriprivideo>#timeAndControls>timeb>n5::before {
+    content: "5";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n6::before, lepriprivideo>#timeAndControls>timeb>n6::before {
+    content: "6";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n7::before, lepriprivideo>#timeAndControls>timeb>n7::before {
+    content: "7";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n8::before, lepriprivideo>#timeAndControls>timeb>n8::before {
+    content: "8";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>n9::before, lepriprivideo>#timeAndControls>timeb>n9::before {
+    content: "9";
+    font-family: font_1;
+}
+lepriprivideo>#timeAndControls>timea>ns::before, lepriprivideo>#timeAndControls>timeb>ns::before {
+    content: ":";
+}
+lepriprivideo>#timeAndControls>timea>ns, lepriprivideo>#timeAndControls>timeb>ns {
+    translate: 0px -0.6px;font-size: 7px;font-weight: 800;
+}</style>`;
+            console.log("🎬 lepripri video is initialised.");
         },
         HTML: {
             basic: "<div id=\"fileNamePart\"></div><video style=\"width: 100%;height: 100%;\" src=\"about:blank\"></video><div id=\"timeAndControls\"><pausebtn></pausebtn><leftbtn></leftbtn><timea time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timea><input id=\"progress\" name=\"progress\" type=\"range\" value=\"0\" min=\"0\" max=\"100\" step=\"0.001\"><timeb time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timeb><rightbtn></rightbtn></div>",
-            generateSpecial: (videoURL, OPTPARAM_videoFileName) => {var videoFileName = OPTPARAM_videoFileName; if (OPTPARAM_videoFileName == undefined) {videoFileName = "";} return "<div id=\"fileNamePart\">" + videoFileName +"</div><video style=\"width: 100%;height: 100%;\" src=\"" + videoURL + "\"></video><div id=\"timeAndControls\"><pausebtn></pausebtn><leftbtn></leftbtn><timea time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timea><input id=\"progress\" name=\"progress\" type=\"range\" value=\"0\" min=\"0\" max=\"100\" step=\"0.001\"><timeb time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timeb><rightbtn></rightbtn></div>"}
+            generateSpecial: function (videoURL, OPTPARAM_videoFileName) {var videoFileName = OPTPARAM_videoFileName; if (OPTPARAM_videoFileName == undefined) {videoFileName = "";} return "<div id=\"fileNamePart\">" + videoFileName +"</div><video style=\"width: 100%;height: 100%;\" src=\"" + videoURL + "\"></video><div id=\"timeAndControls\"><pausebtn></pausebtn><leftbtn></leftbtn><timea time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timea><input id=\"progress\" name=\"progress\" type=\"range\" value=\"0\" min=\"0\" max=\"100\" step=\"0.001\"><timeb time=\"\"><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0><ns time=\"\"></ns><n0 time=\"\"></n0><n0 time=\"\"></n0></timeb><rightbtn></rightbtn></div>"}
     },
         allVideo: [],
-    create: (videoURL, OPTPARAM_videoFileName) => {
-        var milliminutesVideoHTML = milliminutesAPI.video.HTML.generateSpecial(videoURL, OPTPARAM_videoFileName),
-        milliminutesVideoNode = document.createElement("milliminutesvideo"),
-         milliminutesVideoObject = new class milliminutesVideo {constructor() {}};
-          milliminutesVideoNode.innerHTML = milliminutesVideoHTML;
-           milliminutesVideoNode.setAttribute("tabindex", "0");
-            const player = milliminutesVideoNode;
+    create: function (videoURL, OPTPARAM_videoFileName) {
+        var lepripriVideoHTML = lepripriAPI.video.HTML.generateSpecial(videoURL, OPTPARAM_videoFileName),
+        lepripriVideoNode = document.createElement("lepriprivideo"),
+         lepripriVideoObject = new class lepripriVideo {constructor() {}};
+          lepripriVideoNode.innerHTML = lepripriVideoHTML;
+           lepripriVideoNode.setAttribute("tabindex", "0");
+            const player = lepripriVideoNode;
             const video = player.querySelector("video");
             const pauseBtn = player.querySelector("pausebtn");
             const progress = player.querySelector("#progress");
@@ -320,7 +506,7 @@ window.milliminutesAPI = Object.assign({
             let didMove = false;
             // --- LOGIQUE DU TEMPS ---
 
-            const formatTime = (seconds) => {
+            const formatTime = function (seconds) {
                 const h = Math.floor(seconds / 3600);
                 const m = Math.floor((seconds % 3600) / 60);
                 const s = Math.floor(seconds % 60);
@@ -331,11 +517,11 @@ window.milliminutesAPI = Object.assign({
                 ];
             };
 
-            const updateDigits = (container, seconds) => {
+            const updateDigits = function (container, seconds) {
                 const digits = formatTime(seconds);
                 const digitElements = container.querySelectorAll('*:not(ns)[time]');
 
-                digits.forEach((digit, index) => {
+                digits.forEach(function (digit, index) {
                     const oldEl = digitElements[index];
                     if (oldEl) {
                         const newTag = `n${digit}`;
@@ -350,7 +536,7 @@ window.milliminutesAPI = Object.assign({
 
             // --- ÉVÉNEMENTS SOURIS/INTERFACE ---
 
-            pauseBtn.onclick = () => {
+            pauseBtn.onclick = function () {
                 if (video.paused) {
                     video.play();
                     pauseBtn.setAttribute("pause", "");
@@ -360,28 +546,28 @@ window.milliminutesAPI = Object.assign({
                 }
             };
 
-            video.ontimeupdate = () => {
+            video.ontimeupdate = function () {
                 if (!video.duration) return; // Sécurité si la durée n'est pas encore chargée
                 const percent = (video.currentTime / video.duration) * 100;
                 progress.value = percent || 0;
                 updateDigits(timeA, video.currentTime);
             };
 
-            video.onloadedmetadata = () => {
+            video.onloadedmetadata = function () {
                 updateDigits(timeB, video.duration);
             };
 
-            progress.oninput = () => {
+            progress.oninput = function () {
                 const time = (progress.value / 100) * video.duration;
                 video.currentTime = time;
             };
 
-            player.querySelector("leftbtn").onclick = () => video.currentTime -= 5;
-            player.querySelector("rightbtn").onclick = () => video.currentTime += 5;
+            player.querySelector("leftbtn").onclick = function () video.currentTime -= 5;
+            player.querySelector("rightbtn").onclick = function () video.currentTime += 5;
 
             // --- LOGIQUE CLAVIER (il y a un problème si il y plusieurs vidéos) ---
 
-            const handleKeyDown = (e) => {
+            const handleKeyDown = function (e) {
                 if (e.ctrlKey && e.shiftKey && e.code === 'KeyI') {
                     e.preventDefault();
                     return;
@@ -400,9 +586,9 @@ window.milliminutesAPI = Object.assign({
                     didMove = false;
                     startTime = Date.now();
 
-                    pressTimer = setTimeout(() => {
+                    pressTimer = setTimeout(function () {
                         didMove = true;
-                        pressTimer = setInterval(() => {
+                        pressTimer = setInterval(function () {
                             const elapsed = (Date.now() - startTime) / 1000;
                             const step = elapsed * 3; 
 
@@ -416,7 +602,7 @@ window.milliminutesAPI = Object.assign({
                 }
             };
 
-            const handleKeyUp = (e) => {
+            const handleKeyUp = function (e) {
                 if (e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
                     clearTimeout(pressTimer);
                     clearInterval(pressTimer);
@@ -433,11 +619,11 @@ window.milliminutesAPI = Object.assign({
             };
             player.onkeydown = handleKeyDown;
             player.onkeyup = handleKeyUp;
-            milliminutesVideoObject.node = milliminutesVideoNode;
-            milliminutesVideoObject.videoNode = milliminutesVideoNode.querySelector('video');
-            milliminutesAPI.video.allVideo.push(milliminutesVideoObject);
-            return milliminutesVideoNode; // le dévelopeur s'occupe de l'inserer
+            lepripriVideoObject.node = lepripriVideoNode;
+            lepripriVideoObject.videoNode = lepripriVideoNode.querySelector('video');
+            lepripriAPI.video.allVideo.push(lepripriVideoObject);
+            return lepripriVideoNode; // le dévelopeur s'occupe de l'inserer
         }
     }
-}, window.milliminutesAPI);
+}, window.lepripriAPI);
 });
