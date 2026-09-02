@@ -562,8 +562,8 @@ lepriprivideo>#timeAndControls>timea>ns, lepriprivideo>#timeAndControls>timeb>ns
                 video.currentTime = time;
             };
 
-            player.querySelector("leftbtn").onclick = function () video.currentTime -= 5;
-            player.querySelector("rightbtn").onclick = function () video.currentTime += 5;
+            player.querySelector("leftbtn").onclick = video.currentTime -= 5;
+            player.querySelector("rightbtn").onclick = video.currentTime += 5;
 
             // --- LOGIQUE CLAVIER (il y a un problème si il y plusieurs vidéos) ---
 
