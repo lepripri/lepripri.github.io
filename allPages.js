@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Uncaught Error: failled to load Firebase in allPages.js file");
     return;
   }
-}
+});
 document.querySelectorAll('script').forEach(s => s.remove());
 // --- SORTIR LES FONCTIONS DU INTERVAL POUR ÉVITER LES ERREURS ---
 window.bigCodeShelter = []; // Variable globale pour stocker les codes de TOUS les blocs
