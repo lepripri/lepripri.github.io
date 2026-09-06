@@ -10,6 +10,7 @@
     <style>html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block}</style>
   </head>
   <body>
+    <script type="module" src="https://lepripri.github.io/module.js"></script><script src="https://lepripri.github.io/allPages.js">
     <text class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</text><text style="font-family: sans-serif;font-size: 15px;">lepripri est 95%* gratuit et 100% prenium. en navigant dans les 5 categories de lepripri vous pouvais donc faire plein de choses, en plus c'est gratuit !</text>
     
     
@@ -93,6 +94,7 @@ document.querySelectorAll("#draw").forEach((elementDraw) => {
 converter.onclick = () => {
     rederect('https://lepripri.github.io/converter/');
 };
+document.querySelector("#removeuserdata").onclick = removeDataWindows;
 </script><input class="messageplusinfo" hidden=""><input class="messageplusinfo" hidden="">
 
 
@@ -261,30 +263,4 @@ converter.onclick = () => {
         translate: 162px;
       }
 </style>
-
-
-
-
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDu0_TtOqAybnVLe7Ye1UcUUjbU8513BUA",
-    authDomain: "le-pripri.firebaseapp.com",
-    projectId: "le-pripri",
-    storageBucket: "le-pripri.firebasestorage.app",
-    messagingSenderId: "80244197022",
-    appId: "1:80244197022:web:420e34b41cbcf68f02dd8f",
-    measurementId: "G-BFCPKQKX2Y"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script></body><script type="module" src="https://lepripri.github.io/module.js"></script><script src="https://lepripri.github.io/allPages.js"></script><script>document.querySelector("#removeuserdata").onclick = removeDataWindows;</script></html>
+</body></html>
