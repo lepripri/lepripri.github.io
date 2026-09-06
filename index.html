@@ -28,44 +28,45 @@ function rederect (url) {
         aElement.click();
     }, 100);
 }
-converter.addEventListener('mouseenter', () => {
+document.querySelector("#converter").addEventListener('mouseenter', () => {
     document.querySelector('#converter img').src = 'https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px.png';
 });
-converter.addEventListener('mouseleave', () => {
+document.querySelector("#converter).addEventListener('mouseleave', () => {
     document.querySelector('#converter img').src = 'https://lepripri.github.io/lepripri/icons/icons8_synchronize_50px_1.png';
-});product.addEventListener('mouseenter', () => {
+});
+document.querySelector("#product").addEventListener('mouseenter', () => {
     document.querySelector('#product img').src = 'https://lepripri.github.io/lepripri/icons/Product_1.png';
 });
-product.addEventListener('mouseleave', () => {
+document.querySelector("#product").addEventListener('mouseleave', () => {
     document.querySelector('#product img').src = 'https://lepripri.github.io/lepripri/icons/Product.png';
 });
-  code.addEventListener('mouseenter', () => {
+document.querySelector("#code").addEventListener('mouseenter', () => {
     document.querySelector('#code img').src = 'https://lepripri.github.io/lepripri/icons/Source%20Code.png';
 });
-code.addEventListener('mouseleave', () => {
+document.querySelector("#code").addEventListener('mouseleave', () => {
     document.querySelector('#code img').src = 'https://lepripri.github.io/lepripri/icons/Source%20Code_1.png';
 });
-setings.addEventListener('mouseenter', () => {
+document.querySelector("#setings").addEventListener('mouseenter', () => {
     document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings_1.png';
 });
-setings.addEventListener('mouseleave', () => {
+document.querySelector("#setings").addEventListener('mouseleave', () => {
     document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings.png';
 });
-extension.addEventListener('mouseenter', () => {
+document.querySelector("#extension").addEventListener('mouseenter', () => {
     document.querySelector('#extension img').src = 'https://lepripri.github.io/lepripri/icons/icons8_puzzle_100px_1.png';
 });
-extension.addEventListener('mouseleave', () => {
+document.querySelector("#extension").addEventListener('mouseleave', () => {
     document.querySelector('#extension img').src = 'https://lepripri.github.io/lepripri/icons/icons8_puzzle_100px_2.png';
 });
 try {
-    downladExtension.addEventListener('mouseenter', () => {
+    document.querySelector("#downladExtension").addEventListener('mouseenter', () => {
         downladExtension.querySelector('img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
     })
-    downladExtension.addEventListener('mouseleave', () => {
+    document.querySelector("#downladExtension").addEventListener('mouseleave', () => {
         downladExtension.querySelector('img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
     })
 } catch (e) {
-    
+    console.error(e);
 }
 none.addEventListener('mouseenter', () => {
     none.querySelector('img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
