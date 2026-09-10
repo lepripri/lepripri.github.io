@@ -90,7 +90,7 @@ connect.onclick = () => {
         rederect('https://lepripri.github.io/connect/');
     }
 }
-downladdocument.querySelector("#extension").addEventListener("click", () => {var closer = () => {dialog.close();dialog.remove();}, dialog = document.createElement("dialog");dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">le contenu est indisponible';dialog.className = "message";document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener("click", closer);dialog.addEventListener("keydown", closer);document.addEventListener("keydown", closer);setTimeout(closer, 3000)})
+document.querySelector("#downladExtension").addEventListener("click", () => {var closer = () => {dialog.close();dialog.remove();}, dialog = document.createElement("dialog");dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">le contenu est indisponible';dialog.className = "message";document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener("click", closer);dialog.addEventListener("keydown", closer);document.addEventListener("keydown", closer);setTimeout(closer, 3000)})
 var battery, messageNoPouwer = () => {
     alert('batt faible')
 };
