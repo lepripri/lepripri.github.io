@@ -69,12 +69,15 @@ document.querySelector('#none').addEventListener('mouseleave', () => {
     document.querySelector('#none img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
 });
 document.querySelector('#music').addEventListener('mouseenter', () => {
-    document.querySelector('#music img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music_1.svg";
 });
 document.querySelector('#music').addEventListener('mouseleave', () => {
-    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music.svg";
 });
-none.onclick = () => {
+document.querySelector('#music').addEventListener('click', () => {
+    redirect("https://lepripri.github.io/music";);
+});
+document.querySelector("#none").onclick = () => {
     converter.parentElement.style.backgroundColor = 'rgb(255 144 218)';
     setTimeout(() => {
         converter.parentElement.style.backgroundColor = ''
