@@ -75,7 +75,7 @@ document.querySelector('#music').addEventListener('mouseleave', () => {
     document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music.svg";
 });
 document.querySelector('#music').addEventListener('click', () => {
-    redirect("https://lepripri.github.io/music");
+    rederect("https://lepripri.github.io/music");
 });
 document.querySelector("#none").onclick = () => {
     converter.parentElement.style.backgroundColor = 'rgb(255 144 218)';
@@ -272,6 +272,12 @@ document.querySelector("#removeuserdata").onclick = removeDataWindows;
       button[minus]:hover, button[minus]:focus{
         font-size: 15px;
         translate: 162px;
+      }
+      #music {
+        color: #000000;
+      }
+      #music:hover {
+        color: #ff0000;
       }
 </style>
 </body></html>
