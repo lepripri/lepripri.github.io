@@ -31,7 +31,7 @@
         </div>
         <hr>
         <span class="homeTitle">toutes les catégories</span>
-            <div class="homeAction">
+            <div class="homeAction" id="allActions">
                 <div class="homeActionItem" role="button" tabindex="0" id="music">
                     <div class="homeActionItemImage">
                         <img src="https://lepripri.github.io/azertyuiop/icons/icons8_music.svg" draggable="false">
@@ -94,9 +94,9 @@ document.querySelector('#none').addEventListener('mouseleave', () => {
     document.querySelector('#none img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
 });
 document.querySelector("#none").onclick = () => {
-    converter.parentElement.style.backgroundColor = 'rgb(255 144 218)';
+    document.querySelector("allActions").style.backgroundColor = 'rgb(255 144 218)';
     setTimeout(() => {
-        converter.parentElement.style.backgroundColor = ''
+        document.querySelector("allActions").style.backgroundColor = ''
     }, 500);
 }
 document.querySelector(".removeuserdata").onclick = window.removeDataWindows;
