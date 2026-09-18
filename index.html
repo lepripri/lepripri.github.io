@@ -19,7 +19,7 @@
     <span style="font-family: sans-serif;font-size: 8px;display: block;">*quelques fonctionnalités [payantes] dues aux droits d'auteur sur certains contenus</span>
     <hr><div style="display: flex;justify-content: space-between;">
         <span class="homeTitle">recommandations</span>
-            <button minus="" class="removeuserdata">effacer</button>
+        <button minus="" class="removeuserdata">effacer</button>
     </div>
         <div class="homeAction">
             <div class="homeActionItem" role="button" tabindex="0" id="none" title="naviguez afin de pouvoir afficher les recomandations !">
@@ -87,6 +87,18 @@ document.querySelectorAll("#draw").forEach((elementDraw) => {
         rederect("https://lepripri.github.io/draw/")
     }
 });
+document.querySelector('#none').addEventListener('mouseenter', () => {
+    document.querySelector('#none img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+});
+document.querySelector('#none').addEventListener('mouseleave', () => {
+    document.querySelector('#none img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+});
+document.querySelector("#none").onclick = () => {
+    converter.parentElement.style.backgroundColor = 'rgb(255 144 218)';
+    setTimeout(() => {
+        converter.parentElement.style.backgroundColor = ''
+    }, 500);
+}
 document.querySelector(".removeuserdata").onclick = window.removeDataWindows;
 });</script>
 
@@ -95,7 +107,7 @@ document.querySelector(".removeuserdata").onclick = window.removeDataWindows;
 
 
 <style>
-      text.homeTitle {
+      span.homeTitle {
         font-size: 20px;
         font-family: sans-serif;
       }
