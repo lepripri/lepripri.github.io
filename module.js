@@ -32,7 +32,7 @@ async function syncUserProfile(user) {
         await setDoc(userRef, userData, { merge: true });
         console.log("sync ✔");
     } catch (e) {
-        console.error("firestoreError :", e);
+        console.error("Uncaught FirestoreError :", e);
     }
 }
 
