@@ -44,6 +44,12 @@
                     </div>
                     <div class="homeActionItemText">jeux</div>
                 </div>
+                <div class="homeActionItem" role="button" tabindex="0" id="tools">
+                    <div class="homeActionItemImage">
+                        <img src="https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png" draggable="false">
+                    </div>
+                    <div class="homeActionItemText">outils</div>
+                </div>
                 <div class="homeActionItem" role="button" tabindex="0" id="draw">
                     <div class="homeActionItemImage">
                         <img src="https://lepripri.github.io/lepripri/icons/le%20pripri%20draw%20-%20128.png" draggable="false">
@@ -86,6 +92,15 @@ document.querySelectorAll("#draw").forEach((elementDraw) => {
     elementDraw.onclick = () => {
         rederect("https://lepripri.github.io/draw/")
     }
+});
+document.querySelector('#tools').addEventListener('mouseenter', () => {
+    document.querySelector('#tools img').src = "https://lepripri.github.io/lepripri/icons/icons8_Tools_127px_1.png";
+});
+document.querySelector('#tools').addEventListener('mouseleave', () => {
+    document.querySelector('#tools img').src = "https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png";
+});
+document.querySelector('#tools').addEventListener('click', () => {
+    rederect("https://lepripri.github.io/tools/");
 });
 document.querySelector('#none').addEventListener('mouseenter', () => {
     document.querySelector('#none img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
