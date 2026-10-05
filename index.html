@@ -50,11 +50,11 @@
                     </div>
                     <div class="homeActionItemText">outils</div>
                 </div>
-                <div class="homeActionItem" role="button" tabindex="0" id="draw">
+                <div class="homeActionItem" role="button" tabindex="0" id="priprinfo">
                     <div class="homeActionItemImage">
-                        <img src="https://lepripri.github.io/lepripri/icons/le%20pripri%20draw%20-%20128.png" draggable="false">
+                        <img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false">
                     </div>
-                    <div class="homeActionItemText">draw</div>
+                    <div class="homeActionItemText" title="information sur les priprix">pripri</div>
                 </div>
                 <div class="homeActionItem" role="button" tabindex="0" id="setings">
                     <div class="homeActionItemImage">
@@ -86,11 +86,11 @@ var battery, messageNoPouwer = () => {
 games.onclick = () => {
     rederect('https://lepripri.github.io/games/');
 }
-games.onmouseenter = () => {games.querySelector('img').src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_2.png'};
-games.onmouseleave = () => {games.querySelector('img').src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png'};
-document.querySelectorAll("#draw").forEach((elementDraw) => {
-    elementDraw.onclick = () => {
-        rederect("https://lepripri.github.io/draw/")
+document.querySelector("#games").onmouseenter = () => {document.querySelector("#games img").src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_2.png'};
+document.querySelector("#games").onmouseleave = () => {document.querySelector("#games img").src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png'};
+document.querySelectorAll("#priprinfo").forEach((elementpriprinfo) => {
+    elementpriprinfo.onclick = () => {
+        rederect("https://lepripri.github.io/pripri/")
     }
 });
 document.querySelector('#tools').addEventListener('mouseenter', () => {
@@ -107,6 +107,12 @@ document.querySelector('#none').addEventListener('mouseenter', () => {
 });
 document.querySelector('#none').addEventListener('mouseleave', () => {
     document.querySelector('#none img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+});
+document.querySelector('#priprinfo').addEventListener('mouseenter', () => {
+    document.querySelector('#priprinfo img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+});
+document.querySelector('#priprinfo').addEventListener('mouseleave', () => {
+    document.querySelector('#priprinfo img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
 });
 document.querySelector("#none").onclick = () => {
     document.querySelector("#allActions").style.backgroundColor = 'rgb(255 144 218)';
