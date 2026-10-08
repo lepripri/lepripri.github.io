@@ -10,7 +10,7 @@ function bloquage () {
 
 // execution du reste du scripte
 addEventListener("DOMContentLoaded", async function () {
-    await bloquage();
+    setInterval(bloquage, 500);
     if (!bloqued) {
 function showMessage(data, OPTIONALendScript) {
     var closer = function () {
