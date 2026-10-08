@@ -1,4 +1,17 @@
-addEventListener("DOMContentLoaded", function () {
+// script de bloquage
+var bloqued = false;
+function bloquage () {
+    if (!localStorage.bloquage) {
+        bloqued = true;
+        location.href = "/bloquage";
+    }
+    return bloqued;
+}
+
+// execution du reste du scripte
+addEventListener("DOMContentLoaded", async function () {
+    await bloquage();
+    if (!bloqued) {
 function showMessage(data, OPTIONALendScript) {
     var closer = function () {
         setTimeout(function () {
@@ -626,7 +639,7 @@ lepriprivideo>#timeAndControls>timea>ns, lepriprivideo>#timeAndControls>timeb>ns
         }
     }
 }, window.lepripriAPI);
-});
+}});
 try{document.body.appendChild(document.createElement("div")).innerHTML = '<dialog id="removedatawindow" window="" windows="" class="windows window" style="padding: 0px;max-width: 320px;font-family: sans-serif;"><div style="border-block-end-style: solid;border-color: #ff0000;padding: 5px;font-size: 15px;">suppression des donnés de navigation fiable</div><div style="border-block-end-style: solid;border-color: #ff0000;padding: 5px;font-size: 20px;"><b style="font-size: 27px;">quels sont les donnés à supprimer sur le site ?</b><br>les suppression sont strict, elles efface vraiment ce que vous selectionnez, ce qui vous donne une confience pour la vie privée le pripri.<br><select id="removedata" class="removedata" removedata="" value="rien"><option value="cancel">rien</option><option value="all">tout</option></select> <button id="comfirmremovedata" minus="" style="translate: none;">effacer</button></div></dialog>';
 if (document.querySelector("#comfirmremovedata")) {
     document.querySelector("#comfirmremovedata").onclick = function () {
