@@ -26,6 +26,31 @@ var wait = false, translation = {
 };
 
 (function (win) {
+  var isFullscreenEnabled = function () {
+    if (typeof document.fullscreenElement !== "undefined") {
+      return document.fullscreenElement !== null;
+    }
+    if (typeof document.webkitFullscreenElement !== "undefined") {
+      return document.webkitFullscreenElement !== null;
+    }
+    return false;
+  };
+
+  var enterFullscreen = function () {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      document.documentElement.webkitRequestFullscreen();
+    }
+  };
+
+  var exitFullscreen = function () {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  };
     var a = null, b = null, c = document.head.appendChild(document.createElement("style"));
 
     function appendErrorOption(selectEl, errorMessage) {
@@ -336,7 +361,7 @@ var wait = false, translation = {
 
     // HTML Structure
     a.innerHTML = '<div class="loadcontener"><select multiple="" id="loadedFiles"></select><div class="loadbuttons"><div class="loadbuttonscontener"><div><button id="remove"></button><button id="import"></button><button id="open">open</button></div><div id="selected">0</div></div></div><div class="waitload" style="translate: 0px -62px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="waitloader" version="1.1" width="959" height="10" viewBox="0,0,959,10" style="max-width: unset !important;"><defs><linearGradient x1="-11.75" y1="100" x2="138.25" y2="100" gradientUnits="userSpaceOnUse" id="color-1"><stop offset="0" stop-color="#ff0000" stop-opacity="0"></stop><stop offset="1" stop-color="#ff0000"></stop></linearGradient><linearGradient x1="312.75" y1="100" x2="139.25" y2="100" gradientUnits="userSpaceOnUse" id="color-2"><stop offset="0" stop-color="#ff0000" stop-opacity="0"></stop><stop offset="1" stop-color="#ff0000"></stop></linearGradient><linearGradient x1="-324.5" y1="100" x2="-174.5" y2="100" gradientUnits="userSpaceOnUse" id="color-3"><stop offset="0" stop-color="#ff0000" stop-opacity="0"></stop><stop offset="1" stop-color="#ff0000"></stop></linearGradient><linearGradient x1="0" y1="100" x2="-173.5" y2="100" gradientUnits="userSpaceOnUse" id="color-4"><stop offset="0" stop-color="#ff0000" stop-opacity="0"></stop><stop offset="1" stop-color="#ff0000"></stop></linearGradient><linearGradient x1="300" y1="100" x2="450" y2="100" gradientUnits="userSpaceOnUse" id="color-5"><stop offset="0" stop-color="#ff0000" stop-opacity="0"></stop><stop offset="1" stop-color="#ff0000"></stop></linearGradient><linearGradient x1="624.5" y1="100" x2="451" y2="100" gradientUnits="userSpaceOnUse" id="color-6"><stop offset="0" stop-color="#ff0000" stop-opacity="0"></stop><stop offset="1" stop-color="#ff0000"></stop></linearGradient></defs><g transform="translate(329.5,-95)"><g fill="none" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10"><path d="M-11.75,100h150" stroke="url(#color-1)"></path><path d="M312.75,100h-173.5" stroke="url(#color-2)"></path><path d="M-324.5,100h150" stroke="url(#color-3)"></path><path d="M0,100h-173.5" stroke="url(#color-4)"></path><path d="M300,100h150" stroke="url(#color-5)"></path><path d="M624.5,100h-173.5" stroke="url(#color-6)"></path></g></g></svg></div></div>';
-    b.innerHTML = '<div class="appcontener"><input type="range" min="0" max="1" value="0"><video origine=""></video><div class="ui"><img home="" src="assets/0000.svg"><img write="" src="assets/0002.svg"><img video-="" src="assets/0004.svg"><img videoplus="" src="assets/0006.svg"><img capture="" src="assets/0008.svg"><img frame-="" src="assets/0010.svg"><img frameplus="" src="assets/0012.svg"><img player="" pause="" src="assets/0014.svg"><img play-mode="" src="assets/0016.svg"><img setup="" src="assets/0018.svg"></div></div>';
+    b.innerHTML = '<div class="appcontener"><input type="range" min="0" max="1" value="0"><video origine=""></video><div class="ui"><img home="" src="assets/0000.svg"><img write="" src="assets/0002.svg"><img video-="" src="assets/0004.svg"><img videoplus="" src="assets/0006.svg"><img capture="" src="assets/0008.svg"><img frame-="" src="assets/0010.svg"><img frameplus="" src="assets/0012.svg"><img player="" pause="" src="assets/0014.svg"><img play-mode="" src="assets/0016.svg"><img setup="" src="assets/0018.svg"><img full="" src="assets/0023.svg"></div></div></div>';
 
     // CSS injection
     c.innerHTML = '[hidden], .__web-inspector-hide-shortcut__ {display: none !important;} [content]::before {content: attr(content)} * {font-family: sans-serif;font-size: 20px;} select {background: none;border: none;overflow: auto;} .loadcontener {min-width: 460px;max-width: 460px;min-height: 270px;max-height: 270px;overflow: hidden;} .loadcontener * {max-width: 460px;max-height: 270px;} #loadedFiles {width: -webkit-fill-available;width: 100%;height: -webkit-fill-available;height: 100%;min-width: 460px;max-width: 460px;min-height: 270px;max-height: 270px; outline: none;} #loadedFiles option {background-color: #acacac;margin: 10px;padding-inline: 10px;} #loadedFiles option:hover {background-color: #ddd} #loadedFiles option:checked {background-color: #fff;} .loadbuttons {position: fixed;width: 100%;width: -webkit-fill-available;height: 40px;translate: 0px -40px;display: flex;flex-direction: row-reverse;background-color: #000;} .loadbuttonscontener {width: 100%;width: -webkit-fill-available;height: 100%;height: -webkit-fill-available;display: flex;flex-direction: row-reverse;justify-content: space-between;padding: 5px;} .loadbuttonscontener button {appearance: none;border-color: #fff;border-style: solid;border-width: 3px;background: #000;color: #fff;margin-inline-start: 5px;height: 100%;} .loadbuttonscontener button:hover {background-color: #8f8f8f;cursor: pointer;} #selected {display: flex;align-items: center;font-size: 20px;} #app {width: 100%;width: -webkit-fill-available;height: 100%;height: -webkit-fill-available;} .appcontener {width: 100%;width: -webkit-fill-available;height: 100%;height: -webkit-fill-available;} #app video[origine] {width: 100%;width: -webkit-fill-available;height: 100%;height: -webkit-fill-available;} .appcontener > .ui img {margin: 3px;} .appcontener > .ui {display: flex;align-items: center;justify-content: center;} input[type="range"] {width: 100%; width: -webkit-fill-available;} video {max-height: 80%;max-height: calc(100% - 75px);}';
@@ -497,6 +522,19 @@ var wait = false, translation = {
         } else {
             document.querySelector("img[setup]").src = "assets/0018.svg";
         }
+        if (document.querySelector("img[full]:hover")) {
+          if (isFullscreenEnabled()) {
+            document.querySelector("img[full]").src = "assets/0021.svg";
+          } else {
+            document.querySelector("img[full]").src = "assets/0020.svg";
+          }
+        } else {
+          if (isFullscreenEnabled()) {
+            document.querySelector("img[full]").src = "assets/0022.svg";
+          } else {
+            document.querySelector("img[full]").src = "assets/0023.svg";
+          }
+        }
         if (document.querySelector("video").played) {
             document.querySelector('input[type="range"]').value = document.querySelector('video').currentTime;
         }
@@ -552,6 +590,13 @@ var wait = false, translation = {
         } else {
             vidNod.pause();
         }
+    }
+    document.querySelector("[full]").onclick = function () {
+          if (isFullscreenEnabled()) {
+            exitFullscreen();
+          } else {
+            enterFullscreen();
+          }
     }
     document.querySelector('input[type="range"]').onchange = function () {
         if (document.querySelector('video').paused) {
