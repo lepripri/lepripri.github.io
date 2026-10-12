@@ -25,7 +25,7 @@ var wait = false, translation = {
     push: function () {}
 };
 if (!(localStorage.lang == null || localStorage.lang == undefined)) {
-    translateToLang(localStorage.lang);
+    translation.translateToLang(localStorage.lang);
 }
 (function (win) {
   var isFullscreenEnabled = function () {
