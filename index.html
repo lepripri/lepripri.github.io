@@ -1,132 +1,11 @@
 <!DOCTYPE html>
-<html style="background-color: rgb(252, 177, 227);"><head>
+<html><head>
     <meta name="google-site-verification" content="Ci23EmEGsXkvVZIpOdLWNN5yOyJMWLHQrdcpBGyY67E" />
     <link rel="manifest" href="https://lepripri.github.io/azertyuiop/manifest.json">
     <link rel="icon" href="https://lepripri.github.io/ressources/icon.png">
     <meta http-equiv="Content-Type" content="charset=utf-8">
     <title>lepripri (official Camille's version)</title>
     <meta name="description" content="lepripri est un site remplis d'outils">
-    <style>html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block}</style>
-    <script>function rederect (url) {
-        window.location.href = url;
-}</script>
-  </head>
-  <body>
-    <script type="module" src="https://lepripri.github.io/module.js"></script><script src="https://lepripri.github.io/allPages.js"></script>
-    <span class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</span><span style="font-family: sans-serif;font-size: 15px;">ne contenant aucune intelligence artificielle, le pripri est quasi gratuit*.</span>
-    
-    
-    <span style="font-family: sans-serif;font-size: 8px;display: block;">*quelques fonctionnalités [payantes] dues aux droits d'auteur sur certains contenus</span>
-    <hr><div style="display: flex;justify-content: space-between;">
-        <span class="homeTitle">recommandations</span>
-        <button minus="" class="removeuserdata">effacer</button>
-    </div>
-        <div class="homeAction">
-            <div class="homeActionItem" role="button" tabindex="0" id="none" title="naviguez afin de pouvoir afficher les recomandations !">
-                <div class="homeActionItemImage">
-                    <img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false">
-                </div>
-                <div class="homeActionItemText" style="font-size: 27px;">commencer</div>
-            </div>
-        </div>
-        <hr>
-        <span class="homeTitle" id="allActions">toutes les catégories</span>
-            <div class="homeAction">
-                <div class="homeActionItem" role="button" tabindex="0" id="music">
-                    <div class="homeActionItemImage">
-                        <img src="https://lepripri.github.io/azertyuiop/icons/icons8_music.svg" draggable="false">
-                    </div>
-                    <div class="homeActionItemText">musiques</div>
-                </div>
-                <div id="games" class="homeActionItem" role="button" tabindex="0">
-                    <div class="homeActionItemImage">
-                        <img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png">
-                    </div>
-                    <div class="homeActionItemText">jeux</div>
-                </div>
-                <div class="homeActionItem" role="button" tabindex="0" id="tools">
-                    <div class="homeActionItemImage">
-                        <img src="https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png" draggable="false">
-                    </div>
-                    <div class="homeActionItemText">outils</div>
-                </div>
-                <div class="homeActionItem" role="button" tabindex="0" id="priprinfo">
-                    <div class="homeActionItemImage">
-                        <img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false">
-                    </div>
-                    <div class="homeActionItemText" title="information sur les priprix">pripri</div>
-                </div>
-                <div class="homeActionItem" role="button" tabindex="0" id="setings">
-                    <div class="homeActionItemImage">
-                        <img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false">
-                    </div>
-                    <div class="homeActionItemText">paramètres</div>
-                </div>
-            </div>
-<script>addEventListener("DOMContentLoaded", function () {
-    document.querySelector("#setings").addEventListener("click", () => {rederect("https://lepripri.github.io/lepripri/setting")});
-document.querySelector("#setings").addEventListener('mouseenter', () => {
-    document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings_1.png';
-});
-document.querySelector("#setings").addEventListener('mouseleave', () => {
-    document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings.png';
-});
-document.querySelector('#music').addEventListener('mouseenter', () => {
-    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music_1.svg";
-});
-document.querySelector('#music').addEventListener('mouseleave', () => {
-    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music.svg";
-});
-document.querySelector('#music').addEventListener('click', () => {
-    rederect("https://lepripri.github.io/music");
-});
-var battery, messageNoPouwer = () => {
-    alert('batt faible')
-};
-games.onclick = () => {
-    rederect('https://lepripri.github.io/games/');
-}
-document.querySelector("#games").onmouseenter = () => {document.querySelector("#games img").src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_2.png'};
-document.querySelector("#games").onmouseleave = () => {document.querySelector("#games img").src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png'};
-document.querySelectorAll("#priprinfo").forEach((elementpriprinfo) => {
-    elementpriprinfo.onclick = () => {
-        rederect("https://lepripri.github.io/pripri/")
-    }
-});
-document.querySelector('#tools').addEventListener('mouseenter', () => {
-    document.querySelector('#tools img').src = "https://lepripri.github.io/lepripri/icons/icons8_Tools_127px_1.png";
-});
-document.querySelector('#tools').addEventListener('mouseleave', () => {
-    document.querySelector('#tools img').src = "https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png";
-});
-document.querySelector('#tools').addEventListener('click', () => {
-    rederect("https://lepripri.github.io/tools/");
-});
-document.querySelector('#none').addEventListener('mouseenter', () => {
-    document.querySelector('#none img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
-});
-document.querySelector('#none').addEventListener('mouseleave', () => {
-    document.querySelector('#none img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
-});
-document.querySelector('#priprinfo').addEventListener('mouseenter', () => {
-    document.querySelector('#priprinfo img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
-});
-document.querySelector('#priprinfo').addEventListener('mouseleave', () => {
-    document.querySelector('#priprinfo img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
-});
-document.querySelector("#none").onclick = () => {
-    document.querySelector("#allActions").style.backgroundColor = 'rgb(255 144 218)';
-    setTimeout(() => {
-        document.querySelector("#allActions").style.backgroundColor = ''
-    }, 500);
-}
-document.querySelector(".removeuserdata").onclick = window.removeDataWindows;
-});</script>
-
-
-
-
-
 <style>
       span.homeTitle {
         font-size: 20px;
@@ -294,5 +173,108 @@ document.querySelector(".removeuserdata").onclick = window.removeDataWindows;
       #music:hover {
         color: #ff0000;
       }
-</style>
-</body></html>
+html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%;height: 100%;width: -webkit-fill-available;height: -webkit-fill-available;} ::backdrop {background: none} dialog {background: #fcb1e3;border-color: #ff0000;border-style: solid;} dialog.message {display: flex;align-items: center;justify-content: center;flex-direction: column; padding-block-start: 0px;} dialog > img[src="https://lepripri.github.io/lepripri/icons/Warning.png"] {width: 1em; height: 1em; display: block}</style>
+    <script>function rederect (url) {
+        window.location.href = url;
+}</script><script src="allPages.js"></script>
+  </head>
+  <body>
+    <span class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</span><span style="font-family: sans-serif;font-size: 15px;">failure in page loading or language not selected</span><h2 style="font-family: sans-serif;">usable functions :<h2><a href="https://lepripri.github.io/frame-explorer/" minus="">frame explorer (toutes versions)</a>
+<script async>
+var style = entrans = '<span class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</span><span style="font-family: sans-serif;font-size: 15px;">The website is 95%* free and contains no AI. You can delete all traces of your activity in just three clicks.</span><span style="font-family: sans-serif;font-size: 8px;display: block;">*some paid features due to copyright on certain content</span><hr><div style="display: flex;justify-content: space-between;"><span class="homeTitle">recommandations</span><button minus="" class="removeuserdata">remove data ...</button></div><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="none" title="Browse to view the recommendations!"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 27px;">start</div></div></div><hr><span class="homeTitle" id="allActions">all categories</span><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="music"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/icons8_music.svg" draggable="false"></div><div class="homeActionItemText">music</div></div><div id="games" class="homeActionItem" role="button" tabindex="0"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png"></div><div class="homeActionItemText">games</div></div><div class="homeActionItem" role="button" tabindex="0" id="tools"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png" draggable="false"></div><div class="homeActionItemText">tools</div></div><div class="homeActionItem" role="button" tabindex="0" id="priprinfo"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText">pripri</div></div><div class="homeActionItem" role="button" tabindex="0" id="setings"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false"></div><div class="homeActionItemText">Settings</div></div></div>', translation = {en: entrans, en_us: entrans, en_uk: entrans, fr: '<span class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</span><span style="font-family: sans-serif;font-size: 15px;">ne contenant aucune intelligence artificielle, le pripri est quasi gratuit*.</span><span style="font-family: sans-serif;font-size: 8px;display: block;">*quelques fonctionnalités [payantes] dues aux droits d\'auteur sur certains contenus</span><hr><div style="display: flex;justify-content: space-between;"><span class="homeTitle">recommandations</span><button minus="" class="removeuserdata">effacer</button></div><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="none" title="naviguez afin de pouvoir afficher les recomandations !"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 27px;">commencer</div></div></div><hr><span class="homeTitle" id="allActions">toutes les catégories</span><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="music"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/icons8_music.svg" draggable="false"></div><div class="homeActionItemText">musiques</div></div><div id="games" class="homeActionItem" role="button" tabindex="0"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png"></div><div class="homeActionItemText">jeux</div></div><div class="homeActionItem" role="button" tabindex="0" id="tools"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png" draggable="false"></div><div class="homeActionItemText">outils</div></div><div class="homeActionItem" role="button" tabindex="0" id="priprinfo"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" title="information sur les priprix">pripri</div></div><div class="homeActionItem" role="button" tabindex="0" id="setings"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false"></div><div class="homeActionItemText">paramètres</div></div></div>'}, supportedLang = ["en", "en_us", "en_uk", "fr"];
+function refreshTranslation () {
+    if (!supportedLang.includes(localStorage.lang)) return;
+    document.body.innerHTML = translation[localStorage.lang];
+    document.querySelector("#setings").onclick = function () {rederect("https://lepripri.github.io/lepripri/setting")};
+document.querySelector("#setings").onmouseenter = function () {
+    document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings_1.png';
+};
+document.querySelector("#setings").onmouseleave = function () {
+    document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings.png';
+};
+document.querySelector('#music').onmouseenter = function () {
+    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music_1.svg";
+};
+document.querySelector('#music').onmouseleave = function () {
+    document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music.svg";
+};
+document.querySelector('#music').onclick = function () {
+    rederect("https://lepripri.github.io/music");
+};
+var battery, messageNoPouwer = () => {
+    alert('batt faible')
+};
+games.onclick = () => {
+    rederect('https://lepripri.github.io/games/');
+}
+document.querySelector("#games").onmouseenter = () => {document.querySelector("#games img").src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_2.png'};
+document.querySelector("#games").onmouseleave = () => {document.querySelector("#games img").src = 'https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png'};
+document.querySelectorAll("#priprinfo").forEach((elementpriprinfo) => {
+    elementpriprinfo.onclick = () => {
+        rederect("https://lepripri.github.io/pripri/")
+    }
+});
+document.querySelector('#tools').onmouseenter = function () {
+    document.querySelector('#tools img').src = "https://lepripri.github.io/lepripri/icons/icons8_Tools_127px_1.png";
+};
+document.querySelector('#tools').onmouseleave = function () {
+    document.querySelector('#tools img').src = "https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png";
+};
+document.querySelector('#tools').onclick = function () {
+    rederect("https://lepripri.github.io/tools/");
+};
+document.querySelector('#none').onmouseenter = function () {
+    document.querySelector('#none img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+};
+document.querySelector('#none').onmouseleave = function () {
+    document.querySelector('#none img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+};
+document.querySelector('#priprinfo').onmouseenter = function () {
+    document.querySelector('#priprinfo img').src = "https://lepripri.github.io/lepripri/icons/page-512.png";
+};
+document.querySelector('#priprinfo').onmouseleave = function () {
+    document.querySelector('#priprinfo img').src = "https://lepripri.github.io/azertyuiop/icons/page-512.png";
+};
+document.querySelector("#none").onclick = function () {
+    document.querySelector("#allActions").style.backgroundColor = 'rgb(255 144 218)';
+    setTimeout(() => {
+        document.querySelector("#allActions").style.backgroundColor = ''
+    }, 500);
+}
+var en = '<dialog id="removedatawindow" window="" windows="" class="windows window" style="padding: 0px;max-width: 320px;font-family: sans-serif;"><div style="border-block-end-style: solid;border-color: #ff0000;padding: 5px;font-size: 15px;">data deletion manager+</div><div style="border-block-end-style: solid;border-color: #ff0000;padding: 5px;font-size: 20px;"><b style="font-size: 27px;">What data needs to be deleted from the site?</b><br>Deletions are strict, they truly erase what you select, giving you confidence regarding your privacy.<br>delete: <select id="removedata" class="removedata" removedata="" value="rien"><option value="cancel">no data</option><option value="all">all data</option></select> <button id="comfirmremovedata" minus="" style="translate: none;">remove</button></div></dialog>', dialogHTMLinner = {
+    en,
+    en_us: en,
+    en_uk: en,
+    fr: '<dialog id="removedatawindow" window="" windows="" class="windows window" style="padding: 0px;max-width: 320px;font-family: sans-serif;"><div style="border-block-end-style: solid;border-color: #ff0000;padding: 5px;font-size: 15px;">suppression des donnés de navigation fiable</div><div style="border-block-end-style: solid;border-color: #ff0000;padding: 5px;font-size: 20px;"><b style="font-size: 27px;">quels sont les données à supprimer sur le site ?</b><br>les suppression sont strict, elles effacent vraiment ce que vous selectionnez, ce qui vous donne une confience pour la vie privée le pripri.<br>supprimer : <select id="removedata" class="removedata" removedata="" value="rien"><option value="cancel">rien</option><option value="all">tout</option></select> <button id="comfirmremovedata" minus="" style="translate: none;">effacer</button></div></dialog>',
+    undefined: en,
+    null: en
+}
+document.body.appendChild(document.createElement("div")).innerHTML = dialogHTMLinner[localStorage.lang];
+if (document.querySelector("#comfirmremovedata")) {
+    document.querySelector("#comfirmremovedata").onclick = function () {
+        if (document.querySelector("#removedata")) {
+            if (document.querySelector("#removedata").value == "tout" || document.querySelector("#removedata").value == "all") {
+                try {
+                    localStorage.clear();
+                    lepripriAPI.messages.alert("suppression réussi !");
+                } catch (e) {
+                    console.error("Error: failure in  localStorage.clear(): " + e);
+                }
+            }
+        }
+        if (document.querySelector("#removedatawindow")) {
+            document.querySelector("#removedatawindow").close();
+        }
+    }
+}
+function removeDataWindows() {
+    if (document.querySelector("#removedatawindow")) {
+        document.querySelector("#removedatawindow").showModal();
+    }
+}
+document.querySelector(".removeuserdata").onclick = removeDataWindows;
+};
+addEventListener("DOMContentLoaded", function () {
+    refreshTranslation();
+});
+</script></body></html>

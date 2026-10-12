@@ -12,7 +12,7 @@
         "sizes": "512x512",
         "type": "image/png"
     }],
-    "start_url": "https://lepripri.github.io/?app",
+    "start_url": "https://lepripri.github.io/app",
     "display": "standalone",
     "background_color": "#fab2e1",
     "description": "le pripri website"
