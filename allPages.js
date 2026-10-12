@@ -12,6 +12,36 @@ function bloquage () {
 addEventListener("DOMContentLoaded", async function () {
     setInterval(bloquage, 500);
     if (!bloqued) {
+    var setupDialog = {
+        HTML: '<dialog class="config"><style>dialog.config #lang {width: 100%;width: -webkit-fill-available;text-align: center;border-style: solid;border-width: 2px;border-color: #ff0000;background: none;outline: none; font-size: 20px;} dialog.config #lang:hover, dialog.config #lang:focus {font-size: 22px;} dialog.config #lang option {font-size: 20px; background-color: rgb(252, 177, 227);} dialog.config {width: 550px;padding: 0px;} dialog.config h1 {margin: 5px;font-family: sans-serif;border-block-end-style: solid;border-color: #ff0000;font-size: 38px;} dialog.config p.text {font-family: sans-serif;margin: 8px;font-size: 30px;} dialog.config p.text span {font-size: 17px;} dialog.config table {width: 100%;width: -webkit-fill-available;font-size: 20px;font-family: sans-serif;}</style><h1>Welcome to Le Pripri website!</h1><p class="text"><b>A site configuration is required</b> / <span>une configuration du site est nécessaire :</span></p><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><th>language</th><th><select id="lang" name="languages"><option value="en_us">english US</option><option value="en_uk">english UK</option><option value="fr">français</option></select></th></tr></tbody></table><div style="width: 100%;"><div style="width: calc(100% - 55px);display: inline-block;"></div><button style="max-width: 53px;" id="okconfig">OK</button></div></dialog>',
+        elementSelector: "dialog.config",
+        langSelectorSelector: "dialog.config #lang",
+        okBtnSelector: "dialog.config #okconfig",
+        create: function () {
+            if (document.querySelector(setupDialog.elementSelector)) return;
+            localStorage.lang = true;
+            var contentConteneur = document.body.appendChild(document.createElement("div"));
+            contentConteneur.innerHTML = setupDialog.HTML;
+            document.querySelector(setupDialog.langSelectorSelector).onchange = function () {
+                localStorage.lang = document.querySelector(setupDialog.langSelectorSelector).value;
+            };
+            document.querySelector(setupDialog.okBtnSelector).onclick = function () {
+                document.querySelector(setupDialog.elementSelector).close();
+                contentConteneur.remove();
+            };
+            document.querySelector(setupDialog.elementSelector).showModal();
+        },
+        get: function (opening) {
+            if (localStorage.lang == null || localStorage.lang == undefined) {
+                if (opening) {
+                    setupDialog.create();
+                }
+                return true;
+            }
+            return false;
+        }
+}
+setInterval(setupDialog.get, 500, true);
 function showMessage(data, OPTIONALendScript) {
     var closer = function () {
         setTimeout(function () {

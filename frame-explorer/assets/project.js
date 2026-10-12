@@ -7,7 +7,7 @@ var wait = false, translation = {
     import: {
         en_us: { text: "import", title: "import file. supported formats: video/*" },
         en_uk: { text: "import", title: "import file. supported formats: video/*" },
-        fr: { text: "importer", title: "importer des fichiers du format : video/*" }
+        fr: { text: "importer", title: "importer des fichiers de type video/*" }
     },
     remove: {
         en_us: { text: "remove", title: "remove video from the current selection" },
@@ -24,7 +24,9 @@ var wait = false, translation = {
     },
     push: function () {}
 };
-
+if (!(localStorage.lang == null || localStorage.lang == undefined)) {
+    translateToLang(localStorage.lang);
+}
 (function (win) {
   var isFullscreenEnabled = function () {
     if (typeof document.fullscreenElement !== "undefined") {
