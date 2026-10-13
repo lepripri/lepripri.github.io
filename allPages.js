@@ -45,7 +45,7 @@ addEventListener("DOMContentLoaded", async function () {
         }
 }
 setInterval(setupDialog.get, 500, true);
-function showMessage(data, OPTIONALendScript) {
+window.showMessage = function (data, OPTIONALendScript) {
     var closer = function () {
         setTimeout(function () {
             dialog.close();
@@ -56,7 +56,7 @@ function showMessage(data, OPTIONALendScript) {
         }, 350);
     },
     dialog = document.createElement("dialog");
-    dialog.innerHTML = '<img src="https://lepripri.github.io/lepripri/icons/Warning.png">' + data;
+    dialog.innerHTML = '<img src="/lepripri/icons/Warning.png">' + data;
     dialog.className = "message";
     Opener = function () {
         if (document.querySelector('dialog.message')) {
