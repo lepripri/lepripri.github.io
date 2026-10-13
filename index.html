@@ -185,7 +185,10 @@ var style = entrans = '<span class="title" style="text-align: center;font-family
 function refreshTranslation () {
     if (!supportedLang.includes(localStorage.lang)) return;
     document.body.innerHTML = translation[localStorage.lang];
-    document.querySelector("#setings").onclick = function () {rederect("https://lepripri.github.io/lepripri/setting")};
+    document.querySelector("#setings").onclick = function () {
+      //rederect("https://lepripri.github.io/lepripri/setting")
+        showMessage("no setting deployed, developing !");
+    };
 document.querySelector("#setings").onmouseenter = function () {
     document.querySelector('#setings img').src = 'https://lepripri.github.io/lepripri/icons/Settings_1.png';
 };
@@ -199,8 +202,7 @@ document.querySelector('#music').onmouseleave = function () {
     document.querySelector('#music img').src = "https://lepripri.github.io/azertyuiop/icons/icons8_music.svg";
 };
 document.querySelector('#music').onclick = function () {
-  //rederect("https://lepripri.github.io/music");
-    showMessage("no setting deployed, developing !");
+    rederect("https://lepripri.github.io/music");
 };
 var battery, messageNoPouwer = () => {
     alert('batt faible')
