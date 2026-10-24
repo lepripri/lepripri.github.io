@@ -176,3 +176,4 @@ if (typeof fetch === 'undefined') {
   globalThis.fetch = fetchCompatible;
 }
 // script principale
+localStorage.lang = navigator.language;
