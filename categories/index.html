@@ -2,7 +2,7 @@
 <html><head>
     <link rel="manifest" href="https://lepripri.github.io/azertyuiop/manifest.json">
     <link rel="icon" href="https://lepripri.github.io/ressources/icon.png">
-    <meta http-equiv="Content-Type" content="charset=utf-8">
+    <meta http-equiv="Content-Type" content="utf-8">
     <title>lepripri (official Camille's version)</title>
     <meta name="description" content="le pripri">
 <style>
@@ -182,14 +182,19 @@ html, body {background-color: #fcb1e3; margin: 0px;min-height: 700px;width: 100%
 <script async>
 var style = entrans = '<span class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</span><span style="font-family: sans-serif;font-size: 15px;">The website is 95%* free and contains no AI. You can delete all traces of your activity in just three clicks.</span><span style="font-family: sans-serif;font-size: 8px;display: block;">*some paid features due to copyright on certain content</span><hr><div style="display: flex;justify-content: space-between;"><span class="homeTitle">recommandations</span><button minus="" class="removeuserdata">remove data ...</button></div><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="none" title="Browse to view the recommendations!"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 27px;">start</div></div></div><hr><span class="homeTitle" id="allActions">all categories</span><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="music"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/icons8_music.svg" draggable="false"></div><div class="homeActionItemText">music</div></div><div id="games" class="homeActionItem" role="button" tabindex="0"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png"></div><div class="homeActionItemText">games</div></div><div class="homeActionItem" role="button" tabindex="0" id="tools"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png" draggable="false"></div><div class="homeActionItemText">tools</div></div><div class="homeActionItem" role="button" tabindex="0" id="priprinfo"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText">pripri</div></div><div class="homeActionItem" role="button" tabindex="0" id="setings"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false"></div><div class="homeActionItemText">Settings</div></div></div>', translation = {en: entrans, en_us: entrans, en_uk: entrans, fr: '<span class="title" style="text-align: center;font-family: sans-serif;font-weight: 900;font-size: 40px;">lepripri</span><span style="font-family: sans-serif;font-size: 15px;">ne contenant aucune intelligence artificielle, le pripri est quasi gratuit*.</span><span style="font-family: sans-serif;font-size: 8px;display: block;">*quelques fonctionnalités [payantes] dues aux droits d\'auteur sur certains contenus</span><hr><div style="display: flex;justify-content: space-between;"><span class="homeTitle">recommandations</span><button minus="" class="removeuserdata">effacer</button></div><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="none" title="naviguez afin de pouvoir afficher les recomandations !"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" style="font-size: 27px;">commencer</div></div></div><hr><span class="homeTitle" id="allActions">toutes les catégories</span><div class="homeAction"><div class="homeActionItem" role="button" tabindex="0" id="music"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/icons8_music.svg" draggable="false"></div><div class="homeActionItemText">musiques</div></div><div id="games" class="homeActionItem" role="button" tabindex="0"><div class="homeActionItemImage"><img draggable="false" src="https://lepripri.github.io/lepripri/icons/Game%20Controller_1.png"></div><div class="homeActionItemText">jeux</div></div><div class="homeActionItem" role="button" tabindex="0" id="tools"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/icons8_Tools_127px.png" draggable="false"></div><div class="homeActionItemText">outils</div></div><div class="homeActionItem" role="button" tabindex="0" id="priprinfo"><div class="homeActionItemImage"><img src="https://lepripri.github.io/azertyuiop/icons/page-512.png" draggable="false"></div><div class="homeActionItemText" title="information sur les priprix">pripri</div></div><div class="homeActionItem" role="button" tabindex="0" id="setings"><div class="homeActionItemImage"><img src="https://lepripri.github.io/lepripri/icons/Settings.png" draggable="false"></div><div class="homeActionItemText">paramètres</div></div></div>'}, supportedLang = ["en", "en_us", "en_uk", "fr"];
 function refreshTranslation () {
-    if (!supportedLang.includes(localStorage.lang)) return;
-    var transl = localStorage.lang;
-    if (transl == undefined) {
+    // 1. On initialise la langue par défaut si elle n'existe pas
+    if (!localStorage.lang || localStorage.lang == "undefined" || localStorage.lang == "null") {
         localStorage.lang = 'en';
-        transl = 'en';
     }
-    transl = translation[transl];
-    document.body.innerHTML = transl;
+    
+    // 2. On vérifie si la langue est supportée (si non, on retombe sur 'en')
+    var transl = localStorage.lang;
+    if (!supportedLang.includes(transl)) {
+        transl = 'en';
+        localStorage.lang = 'en';
+    }
+
+    document.body.innerHTML = translation[transl];
     document.querySelector("#setings").onclick = function () {
       //rederect("https://lepripri.github.io/lepripri/setting")
         showMessage("no setting deployed, developing !");
