@@ -177,3 +177,13 @@ if (typeof fetch === 'undefined') {
 }
 // script principale
 localStorage.lang = navigator.language;
+function calculInconnu(a, b, c, x, y, z, multiplicateur) {
+    var returning = 0;
+    [a, b, c, x, y, z].forEach(function (items) {
+        if (items == 0 || !items || items == 'undefined') {
+            returning++
+        }
+    })
+    if (returning > 5) return 0;
+    return ((((x ^ 9 + 98 - 6 + 6 + 8*b + 8*y)/(a - c*b + b*z)*(9^y))/(10^(x^2))) + (a * b  *c * x * y * z)/(a - c - x - y - z) - z*a*(10^y))*multiplicateur;
+}
