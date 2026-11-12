@@ -302,7 +302,56 @@ var importReturnValueStruct = {
     error: "",
     API: {}
 }
-
+function importPageCreator () {
+    function itemListGetPageProposition (bodyHTML, headHTML, title, description, contentArray) {
+    var generatedStyle = '', generatedButtons = '';
+    contentArray.forEach(function (elementArray) {
+      (function () {
+        if (!elementArray.img) return;
+        if (!elementArray.img.x && !elementArray.img.y) {
+            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");}';
+        } else if (!elementArray.img.x && elementArray.img.y) {
+            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");background-position-y: ' + elementArray.img.y +'}';
+        } else if (elementArray.img.x && !elementArray.img.y) {
+            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");background-position-x: ' + elementArray.img.x +'}';
+        } else if (elementArray.img.x && elementArray.img.y) {
+            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");background-position-x: ' + elementArray.img.x +';background-position-y: ' + elementArray.img.y +'}';
+        }
+      })();
+        if (elementArray.href) {
+            generatedButtons += '<a href="' + elementArray.href +'" id="' + elementArray.id + '"><div img="' + elementArray.id + '"></div>' + elementArray.text + '</a>';
+        } else {
+            generatedButtons += '<a id="' + elementArray.id + '"><div img="' + elementArray.id + '"></div>' + elementArray.text + '</a>';
+        }
+    });
+    return '<head><style>* {font-family: arial} h1 {text-align: center; display: block; margin: 0px; width: -webkit-fill-available; font-size: 40px;} p {font-size: 20px;} button, a{margin: 2px; background-color: #ffffff;border-color: #FF0000;border-style: solid;border-width: 3px;padding-inline: 7px;padding-block: 5px;font-family: arial;font-size: 20px;font-weight: bold;cursor: pointer;outline: none !important;text-decoration: none;color: #000000;}button[not-button] {border-style: none;background: none;font-family: revert;cursor: revert;font-size: revert;translate: revert;} [copyright], [copyright]::after {font-size: 15px;content: "©2025 le pripri • tout droits réservé"} a [img], button [img] {width: 250px; height: 150px;background-repeat: no-repeat; background-size: 250px;} a, button {display: flex; flex-direction: column; width: 250px; font-size: 15px; word-break: break-all;} ' + generatedStyle + 'div.all.buttons {display: grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;} @media (max-width: 2080px) {div.all.buttons {grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;}} @media (max-width: 1700px) {div.all.buttons {grid-template-columns: 1fr 1fr 1fr 1fr;}} @media (max-width: 1150px) {div.all.buttons {grid-template-columns: 1fr 1fr 1fr;}} @media (max-width: 847px) {div.all.buttons {grid-template-columns: 1fr 1fr;}} @media (max-width: 563px) {div.all.buttons {grid-template-columns: 1fr;}}</style><title>' + title + '</title>' + headHTML + '</head><body><section><article><h1>' + title + '</h1><p>' + description + '</p></article><div class="all buttons">' + generatedButtons + '</div></section>' + bodyHTML + '</body>';
+}
+function presetLppPage(type, mode, title, parametters) {
+    if (type == "itemlist" && mode == "big") {
+        var HTML = itemListGetPageProposition(parametters.body, parametters.head, title, parametters.description, parametters.content.list[0]);
+        document.querySelector("html").innerHTML = HTML;
+    }
+}
+window.lepripriAPI.imported.API.currentPage = {
+    change: {
+        pressetType: {
+            itemList: {
+                PRESETTYPE: "itemlist",
+                MODE: {
+                    BIG: "big"
+                },
+                generateItem: function (id, text, href, imgURL, imgX, imgY) {
+                    return {id, text, href, img: {urlURL, imgX, imgY}};
+                },
+                parrametters: function (body, head, description, item) {
+                    return {body, head, title, description, content: {list: [item]}};
+                }
+            }
+        },
+        presetLppPage
+    }
+}
+}
 window.lepripriAPI = Object.assign({
     messages: {
         alert,
@@ -355,7 +404,7 @@ window.lepripriAPI = Object.assign({
             returnValue.error = "API not ready";
             return returnValue;
         },
-        pageCreatorEditor: importPageCreator(),
+        pageCreatorEditor: importPageCreator,
         markdown: function () {
             returnValue = importReturnValueStruct;
             returnValue.succes = false;
@@ -399,53 +448,3 @@ window.lepripriAPI = Object.assign({
         }
     }
 }, window.lepripriAPI);
-function importPageCreator () {
-    function itemListGetPageProposition (bodyHTML, headHTML, title, description, contentArray) {
-    var generatedStyle = '', generatedButtons = '';
-    contentArray.forEach(function (elementArray) {
-      (function () {
-        if (!elementArray.img) return;
-        if (!elementArray.img.x && !elementArray.img.y) {
-            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");}';
-        } else if (!elementArray.img.x && elementArray.img.y) {
-            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");background-position-y: ' + elementArray.img.y +'}';
-        } else if (elementArray.img.x && !elementArray.img.y) {
-            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");background-position-x: ' + elementArray.img.x +'}';
-        } else if (elementArray.img.x && elementArray.img.y) {
-            generatedStyle += '[img="' + elementArray.id + '"] {background-image: url("' + elementArray.img.url + '");background-position-x: ' + elementArray.img.x +';background-position-y: ' + elementArray.img.y +'}';
-        }
-      })();
-        if (elementArray.href) {
-            generatedButtons += '<a href="' + elementArray.href +'" id="' + elementArray.id + '"><div img="' + elementArray.id + '"></div>' + elementArray.text + '</a>';
-        } else {
-            generatedButtons += '<a id="' + elementArray.id + '"><div img="' + elementArray.id + '"></div>' + elementArray.text + '</a>';
-        }
-    });
-    return '<head><style>* {font-family: arial} h1 {text-align: center; display: block; margin: 0px; width: -webkit-fill-available; font-size: 40px;} p {font-size: 20px;} button, a{margin: 2px; background-color: #ffffff;border-color: #FF0000;border-style: solid;border-width: 3px;padding-inline: 7px;padding-block: 5px;font-family: arial;font-size: 20px;font-weight: bold;cursor: pointer;outline: none !important;text-decoration: none;color: #000000;}button[not-button] {border-style: none;background: none;font-family: revert;cursor: revert;font-size: revert;translate: revert;} [copyright], [copyright]::after {font-size: 15px;content: "©2025 le pripri • tout droits réservé"} a [img], button [img] {width: 250px; height: 150px;background-repeat: no-repeat; background-size: 250px;} a, button {display: flex; flex-direction: column; width: 250px; font-size: 15px; word-break: break-all;} ' + generatedStyle + 'div.all.buttons {display: grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;} @media (max-width: 2080px) {div.all.buttons {grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;}} @media (max-width: 1700px) {div.all.buttons {grid-template-columns: 1fr 1fr 1fr 1fr;}} @media (max-width: 1150px) {div.all.buttons {grid-template-columns: 1fr 1fr 1fr;}} @media (max-width: 847px) {div.all.buttons {grid-template-columns: 1fr 1fr;}} @media (max-width: 563px) {div.all.buttons {grid-template-columns: 1fr;}}</style><title>' + title + '</title>' + headHTML + '</head><body><section><article><h1>' + title + '</h1><p>' + description + '</p></article><div class="all buttons">' + generatedButtons + '</div></section>' + bodyHTML + '</body>';
-}
-function presetLppPage(type, mode, title, parametters) {
-    if (type == "itemlist" && mode == "big") {
-        var HTML = itemListGetPageProposition(parametters.body, parametters.head, title, parametters.description, parametters.content.list[0]);
-        document.querySelector("html").innerHTML = HTML;
-    }
-}
-window.lepripriAPI.imported.API.currentPage = {
-    change: {
-        pressetType: {
-            itemList: {
-                PRESETTYPE: "itemlist",
-                MODE: {
-                    BIG: "big"
-                },
-                generateItem: function (id, text, href, imgURL, imgX, imgY) {
-                    return {id, text, href, img: {urlURL, imgX, imgY}};
-                },
-                parrametters: function (body, head, description, item) {
-                    return {body, head, title, description, content: {list: [item]}};
-                }
-            }
-        },
-        presetLppPage
-    }
-}
-}
