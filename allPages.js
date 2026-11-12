@@ -341,7 +341,7 @@ window.lepripriAPI.imported.API.currentPage = {
                     BIG: "big"
                 },
                 generateItem: function (id, text, href, imgURL, imgX, imgY) {
-                    return {id, text, href, img: {urlURL, imgX, imgY}};
+                    return {id, text, href, img: {imgURL, imgX, imgY}};
                 },
                 parrametters: function (body, head, description, item) {
                     return {body, head, description, content: {list: [item]}};
