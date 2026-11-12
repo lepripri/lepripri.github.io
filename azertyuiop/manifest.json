@@ -2,6 +2,7 @@
     "theme_color": "#fab2e1",
     "name": "le pripri website",
     "short_name": "le pripri",
+    "categories": ["music", "games", "utilities", "tools", "kids", "personalization"]
     "icons": [{
         "src": "icons/page-256.png",
         "sizes": "256x256",
