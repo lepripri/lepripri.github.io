@@ -13,7 +13,7 @@
         "type": "image/png"
     }],
     "start_url": "https://lepripri.github.io/app",
-    "display": "standalone",
+    "display": "minimal-ui",
     "background_color": "#fab2e1",
     "description": "le pripri website"
 }
