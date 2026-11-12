@@ -344,7 +344,7 @@ window.lepripriAPI.imported.API.currentPage = {
                     return {id, text, href, img: {urlURL, imgX, imgY}};
                 },
                 parrametters: function (body, head, description, item) {
-                    return {body, head, title, description, content: {list: [item]}};
+                    return {body, head, description, content: {list: [item]}};
                 }
             }
         },
