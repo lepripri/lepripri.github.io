@@ -332,6 +332,7 @@ function presetLppPage(type, mode, title, parametters) {
         document.querySelector("html").innerHTML = HTML;
     }
 }
+var messagesHTML = '<dialog style="padding: 0px;font-family: sans-serif;max-width: 500px;" open=""><div class="title" style="padding: 3px;border-block-end-style: solid;border-color: #ff0000;height: 22px;font-size: 20px;">avertissement</div><div style="display: inline-block; vertical-align: top; padding: 6px; text-align: center; font-size: 92px; height: 100px; width: 100px;">1</div><div style="display: inline-block;vertical-align: top;min-height: 100px;max-width: 380px;overflow: hidden;box-sizing: border-box;word-break: break-word;overflow-wrap: break-word;padding-block: 15px;">le texte </div></dialog>'
 window.lepripriAPI.imported.API.currentPage = {
     change: {
         pressetType: {
