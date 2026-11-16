@@ -4,13 +4,18 @@
     "short_name": "le pripri",
     "categories": ["music", "games", "utilities", "tools", "kids", "personalization"],
     "icons": [{
-        "src": "icons/page-256.png",
-        "sizes": "256x256",
+        "src": "icons/page-64.png",
+        "sizes": "64x64",
         "type": "image/png"
       },
       {
-        "src": "https://lepripri.github.io/azertyuiop/icons/page-512.png",
-        "sizes": "512x512",
+        "src": "https://lepripri.github.io/ressources/img/lepripri.png",
+        "sizes": "2089x2089",
+        "type": "image/png"
+      },
+      {
+        "src": "https://lepripri.github.io/ressources/img/lepripri.ico",
+        "sizes": "128x128",
         "type": "image/png"
     }],
     "start_url": "https://lepripri.github.io/app",
