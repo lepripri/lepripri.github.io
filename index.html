@@ -11,5 +11,19 @@
   </head>
   <body style="font-size: 100px;">
     <i>le pripri ne s'est pas executé. vous pouvez aller sur <a href="/basic">le pripri basic</a> ou <a href="/categories/">naviguer dans les catégories</a></i>
+    <script>
+      document.querySelector("html").innerHTML = '<head><link rel="icon" href="/ressources/img/lepripri.ico"></head><body><style>.milliminutes {background-image: url("/ressources/img/milliminutes.JPG");width: 100%;width: -webkit-fill-available;height: 100%;height: -webkit-fill-available;background-size: 100%; background-repeat: no-repeat;background-position: center;} .le.pripri.loaded {background-image: url("/ressources/img/le pripri website.png");width: 100%;width: -webkit-fill-available;background-size: 300px;background-repeat: no-repeat;height: 80px;} .le.pripri.loading.error::before {content: "le pripri"} .le.pripri.title {position: absolute; font-size: 50px; font-family: sans-serif; color: #00DDDD} .buttons {position: fixed; height: 50px; width: 100%; width: -webkit-fill-available; translate: 0 -50px;text-align: right;} .buttons * {display: inline-block;background-repeat: no-repeat;background-size: 100%;height: 50px;margin-inline: 4px;} .radio {background-image: url("/ressources/img/button_radio_FR.png");width: 117px;} .radio:hover {background-image: url("/ressources/img/button_radio_FR_hover.png");} .music {background-image: url("/ressources/img/button_music_FR.png");width: 135px;} .music:hover {background-image: url("/ressources/img/button_music_FR_hover.png");width: 135px;} .games {background-image: url("/ressources/img/button_games_FR.png");width: 102px;} .games:hover {background-image: url("/ressources/img/button_games_FR_hover.png");width: 102px;} .categories {background-image: url("/ressources/img/button_categories_FR.png");width: 144px;} .categories:hover {background-image: url("/ressources/img/button_categories_FR_hover.png");width: 144px;}</style><div class="le pripri title loaded"></div><div class="milliminutes"></div><div class="buttons"><div class="radio"></div><div class="music"></div><div class="games"></div><div class="categories"></div></div></body>';
+      document.querySelector(".categories").onclick = function () {
+        location.href = "/categories"};
+      document.querySelector(".radio").onclick = function () {
+        location.href = "/radio";
+      };
+      document.querySelector(".music").onclick = function () {
+        location.href = "/music";
+      };
+      document.querySelector(".games").onclick = function () {
+        location.href = "/games";
+      };
+    </script>
   </body>
 </html>
